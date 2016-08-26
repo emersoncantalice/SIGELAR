@@ -28,8 +28,10 @@
 <h:body>
 
 	<header class="aw-topbar">
-		<h:graphicImage library="images" name="logo_barra_menu.png" />
-		<a class="aw-toggle  js-toggle"><i
+		<h:link outcome="/pages/Home.xhtml">
+			<p:graphicImage library="images" name="logo_barra_menu.png" style="margin:0.6%;"/>
+		</h:link>
+		<a href="/pages/Home.xhtml" class="aw-toggle  js-toggle"><i
 			class="fa  fa-bars"></i></a>
 
 		<h:panelGrid columns="4" styleClass="informacoes">
