@@ -1,0 +1,188 @@
+@CHARSET "UTF-8";
+
+#MainMenu ul {
+	display: none;
+	list-style: none;
+}
+
+.imagem_centralizada {
+	display: block;
+	background-position: left;
+	width:30%;
+	margin-left: 15%;
+	margin-top: 10%;
+}
+
+.login {
+	position: relative;
+}
+
+.h1 {
+	font-size: xx-large;
+	font-weight: bold;
+}
+
+.centralizado {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.centralizado_topo {
+	margin-left: 30px;
+}
+
+.imagem_sige_centralizada {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.imagem_sige_centralizada2 {
+	margin-left: 10%;
+}
+
+.fundo_login {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #8080ff;
+}
+
+.fundo_icone_usuario {
+	background-color: #f5f5ff;
+	text-align: justify;
+	padding: 2%;
+}
+
+.fundo_search {
+	background-color: #f5f5ff;
+	text-align: justify;
+	padding: 3%;
+}
+
+.texto_centralizado {
+	color: white;
+	text-align: center;
+	padding: 15px;
+}
+
+.ui-panelgrid td, .ui-panelgrid tr {
+	border-style: none !important;
+	background-color: #f0f0f0;
+}
+
+}
+.menu-principal {
+	size: auto;
+}
+
+.msg-menu {
+	font-variant: small-caps;
+	margin-left: 7%;
+}
+
+.menu {
+	background-color: white;
+	text-align: left;
+	font-size: 16px;
+	padding: 15%;
+	line-height: 350%;
+	min-height: 50%;
+	font-weight: bold;
+	position: relative;
+}
+
+.centralizada {
+	padding-left: 50px;
+}
+
+.usuario-nome {
+	background-color: #ede9e3;
+}
+
+.botoes-crud {
+	position: static;
+	text-align: right;
+}
+
+.botao-novo {
+	background-color: #0000ff;
+	height: 85%;
+	width: 10%;
+	margin-left: 10px;
+	margin-top: 2%;
+}
+
+.botao-editar {
+	background-color: fuchsia;
+	height: 100%;
+	width: 10%;
+	margin-left: 10px;
+}
+
+.botao-excluir {
+	background-color: #8080c0;
+	height: 85%;
+	width: 10%;
+	margin-left: 10px;
+}
+
+.center {
+	background-color: #f0f0f0;
+	min-height: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.painel-central {
+	background-color: #f0f0f0;
+	min-height: 94.5%;
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: auto;
+	text-align: center;
+}
+
+.imagem-logo {
+	min-height: 94.5%;
+	height: 480px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 5%;
+	margin-bottom: 5%;
+	text-align: center;
+}
+
+.rodape-centro {
+	position: static;
+	bottom: 0px;
+	width: 99%;
+	text-align: center;
+	background-color: white;
+	margin-left: 2px;
+}
+
+.rodape {
+	position: fixed;
+	bottom: 0.3%;
+}
+
+.separar {
+	margin-top: 5px;
+}
+
+.fundo {
+	background-color: #ede9e3;
+}
+
+.ui-widget, .ui-widget, .ui-widget {
+	font-size: 95% !important;
+}
+
+.ui-layout, .ui-layout-doc, .ui-layout-unit, .ui-layout-unit-header,
+	.ui-layout-unit-content {
+	background-color: #f0f0f0;
+}

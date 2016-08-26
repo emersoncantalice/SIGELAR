@@ -1,0 +1,85 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:sec="http://www.springframework.org/security/tags">
+
+	<div>
+		<h:form id="formMenu">
+			<p:outputPanel styleClass="fundo_icone_usuario">
+				<p:panel style="text-align: center">
+				<p:clock pattern="HH:mm:ss dd/MM/yyyy"/>
+				<p:separator />
+				<h:outputText value="Bem-vindo, "/>
+				<h:outputText style="font-weight: bold"
+					value="#{beanMenuPrincipal.nomeUsuario}." />
+				<br />
+				<h:outputText value="Último acesso: " />
+				<h:outputText style="font-weight: bold"
+					value="#{beanMenuPrincipal.ultimoAcesso}" />
+				</p:panel>
+
+				<!-- 				<sec:authorize ifAllGranted="ROLE_ADMIN"> -->
+				<!--        			 SÓ ADMIN -->
+				<!--    			 </sec:authorize> -->
+
+				<!-- 				<sec:authorize ifNotGranted="ROLE_USER"> -->
+				<!--         			SE NÃO TEM USER -->
+				<!--     			</sec:authorize> -->
+
+				<!-- 				<sec:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER"> -->
+				<!--        			 SE TEM UMA DAS 2 -->
+				<!--    			 </sec:authorize> -->
+
+
+			</p:outputPanel>
+			<p:panelMenu>
+				<sec:authorize ifAnyGranted="ROLE_ADMIN, ROLE_GER">
+					<p:submenu label="DashBoard">
+						<p:submenu label="Atendimentos">
+							<p:menuitem value="Clientes" url="/dashboard/DashBoard.xhtml" />
+							<p:submenu label="Pessoas">
+								<p:menuitem value="Colaborador" url="#" />
+							</p:submenu>
+						</p:submenu>
+						<p:menuitem value="Finanças" url="/dashboard/DashBoard.xhtml"
+							icon="ui-icon-note" />
+					</p:submenu>
+				</sec:authorize>
+
+				<p:submenu label="#{labels.menu_cadastros}">
+					<p:menuitem value="Médicos"
+						url="#"
+						icon="ui-icon-note" />
+					<p:menuitem value="Produtos"
+						url="#" icon="ui-icon-cart" />
+					<p:menuitem value="Funcionario"
+						url="/pages/funcionario/funcionarioCRUD.xhtml"
+						icon="ui-icon-person" />
+				</p:submenu>
+
+				<p:submenu label="#{labels.menu_settings}">
+					<p:menuitem value="#{labels.menu_language}"
+						url="/pages/Linguagem.xhtml" ajax="false" icon="ui-icon-wrench" />
+					<p:menuitem value="#{labels.logout}"
+						url="/j_spring_security_logout" ajax="false" icon="ui-icon-wrench" />
+				</p:submenu>
+
+			</p:panelMenu>
+			
+			<p:outputPanel id="rd" styleClass="rodape">
+				<p:panelGrid columns="2">
+					<p:inputText id="idpage"  size="16" value="#{beanMenuPrincipal.idPage}" onclick="this.value='';"/>
+					<p:commandButton icon="ui-icon-circle-zoomin"
+						actionListener="#{beanMenuPrincipal.searchPage()}"
+						update="msgMenu" 
+						onsuccess="setTimeout ('$(\'#formMenu\\\\:msgMenu\').hide()', 3000);" />
+				</p:panelGrid>
+				<p:messages id="msgMenu" styleClass="msg-menu"></p:messages>
+			</p:outputPanel>
+			<p:hotkey bind="f12" update="msgMenu"
+					action="#{beanMenuPrincipal.searchPage()}" />
+		</h:form>
+	</div>
+
+</ui:composition>

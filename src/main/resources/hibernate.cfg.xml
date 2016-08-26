@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+	
+		<!-- Database connection settings - Conf de conexão com BD -->
+		<property name="connection.driver_class">org.postgresql.Driver</property>
+		
+		<property name="connection.url">jdbc:postgresql://127.0.0.1:5432/sigelar</property>
+		<property name="connection.username">postgres</property>
+		<property name="connection.password">sigelar123</property>
+		
+		<!-- JDBC connection pool (use the built-in) - Sessões ao mesmo tempo -->
+		<property name="connection.pool_size">1</property>
+		
+		<property name="hibernate.temp.use_jdbc_metadata_defaults">false</property>
+		
+		<!-- 		SQL dialect - Dialeto do BD  -->
+		<property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+		
+		<!-- Enable Hibernate's automatic session context management - GERENCIAMENTO 
+			DO CONTEXTO DAS SESSÕES -->
+		<property name="current_session_context_class">thread</property>
+		
+		<!-- Disable the second-level cache - CACHE DE SEGUNDO NIVEL -->
+		<property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
+		
+		<!-- Echo all executed SQL to stdout -->
+		<property name="show_sql">true</property>
+		
+		<!-- Drop and re-create the database schema on startup - Cria as tabelas 
+			do BD -->
+		<property name="hbm2ddl.auto">update</property>
+		
+		<property name="hibernate.show_sql">true</property>
+		
+		<property name="hibernate.format_sql">true</property>
+		
+		<!-- Mapeamento de Entidades -->
+		
+		<mapping class="br.edu.facisa.sigelar.domain.Usuario" />
+	
+	</session-factory>
+</hibernate-configuration>
