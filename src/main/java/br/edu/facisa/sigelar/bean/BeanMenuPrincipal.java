@@ -63,6 +63,7 @@ public class BeanMenuPrincipal implements Serializable {
 	
 	public void searchPage() throws IOException {
 		switch (idPage) {
+		// Teste merge eclipse
 		case 1:
 			Faces.redirect("pages/funcionario/ParticipanteCRUD.xhtml");
 			break;
