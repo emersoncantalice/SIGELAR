@@ -13,4 +13,4 @@ Entre outros frameworks.
 
 Projeto de:
 
-Émerson Cantalice Doglas Lima
+Émerson Cantalice e Doglas Lima
