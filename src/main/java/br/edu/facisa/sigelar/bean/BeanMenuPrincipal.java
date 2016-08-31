@@ -36,7 +36,7 @@ public class BeanMenuPrincipal implements Serializable {
 	public void carregaInformacoesBasicas() {
 
 		try {
-			// Teste conflito
+
 			if (nomeUsuario == null || nomeUsuario.isEmpty()) {
 				UsuarioDAO usuarioDAO = new UsuarioDAO();
 				usuario = new Usuario();
@@ -64,7 +64,6 @@ public class BeanMenuPrincipal implements Serializable {
 	
 	public void searchPage() throws IOException {
 		switch (idPage) {
-		// Teste merge eclipse
 		case 1:
 			Faces.redirect("pages/funcionario/ParticipanteCRUD.xhtml");
 			break;
@@ -123,7 +122,5 @@ public class BeanMenuPrincipal implements Serializable {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-
-	
 
 }
