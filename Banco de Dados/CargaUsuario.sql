@@ -1,4 +1,3 @@
-﻿INSERT INTO usuario(id, name, password, role, username)
-    VALUES (1, 'Emerson Cantalice', '123', 'ROLE_ADMIN', 'escantalice');
-INSERT INTO usuario(id, name, password, role, username)
-    VALUES (2, 'Doglas Lima', '123', 'ROLE_USER', 'dlima');
+insert into usuario
+    values (1, '1990-01-01', '1990-01-01', 'Emerson Cantalice', '123', 'ROLE_ADMIN', 'escantalice'),
+	  	   (2, '1990-01-01', '1990-01-01', 'Doglas Lima', '123', 'ROLE_USER', 'dlima');
