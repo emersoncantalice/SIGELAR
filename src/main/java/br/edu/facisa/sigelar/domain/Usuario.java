@@ -31,6 +31,9 @@ public class Usuario extends GenericDomain {
 
 	@Column(length = 32, nullable = false)
 	private String role;
+	
+	@Column(length = 50, nullable = false)
+	private String email;
 
 	public String getNome() {
 		return nome;
@@ -78,6 +81,14 @@ public class Usuario extends GenericDomain {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }
