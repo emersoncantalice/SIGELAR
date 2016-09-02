@@ -55,6 +55,23 @@ public class UsuarioDAO extends GenericDAO<Usuario> {
 		}
 	}
 	
+	public Usuario buscarPorEmail(String email) {
+		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
+		try {
+
+			Criteria listagem = sessao.createCriteria(Usuario.class);
+			listagem.add(Restrictions.like("email", email));
+			Usuario usuarioDB = (Usuario) listagem.uniqueResult();
+
+			return usuarioDB;
+
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			sessao.close();
+		}
+	}
+	
 	public void salvarUltimoAcesso(String data) {
 		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
 		Transaction transacao = null;

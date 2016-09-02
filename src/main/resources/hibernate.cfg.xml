@@ -9,7 +9,7 @@
 		
 		<property name="connection.url">jdbc:postgresql://127.0.0.1:5432/sigelar</property>
 		<property name="connection.username">postgres</property>
-		<property name="connection.password">shinigami</property>
+		<property name="connection.password">sigelar123</property>
 		
 		<!-- JDBC connection pool (use the built-in) - Sessões ao mesmo tempo -->
 		<property name="connection.pool_size">1</property>
