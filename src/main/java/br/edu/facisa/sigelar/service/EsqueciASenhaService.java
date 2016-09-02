@@ -2,13 +2,12 @@ package br.edu.facisa.sigelar.service;
 
 import java.io.Serializable;
 
-import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
-import org.springframework.http.HttpStatus;
 
 import br.edu.facisa.sigelar.dao.UsuarioDAO;
 import br.edu.facisa.sigelar.domain.Usuario;
@@ -18,7 +17,7 @@ public class EsqueciASenhaService implements Serializable {
 
 	private static final long serialVersionUID = 8408200690871501014L;
 
-	@GET
+	@POST
 	@Path("{email}")
 	public void sendEmail(@PathParam("email") String email) {
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
