@@ -18,6 +18,51 @@
 	important;
 }
 </style>
+	<script>
+
+    var http_request = false;
+
+    function makeRequest(url) {
+        http_request = false;
+        console.log(window.XMLHttpRequest);
+        if (window.XMLHttpRequest) { // Mozilla, Safari,...
+            http_request = new XMLHttpRequest();
+            if (http_request.overrideMimeType) {
+                http_request.overrideMimeType('text/xml');
+            }
+        } else if (window.ActiveXObject) { // IE
+            try {
+                http_request = new ActiveXObject("Msxml2.XMLHTTP");
+            } catch (e) {
+                try {
+                    http_request = new ActiveXObject("Microsoft.XMLHTTP");
+                } catch (e) {}
+            }
+        }
+
+        if (!http_request) {
+            alert('Giving up :( Cannot create an XMLHTTP instance');
+            return false;
+        }
+        http_request.onreadystatechange = alertContents;
+        http_request.open('GET', url, true);
+        http_request.send(null);
+
+    }
+
+    function alertContents() {
+        if (http_request.readyState == 4) {
+            if (http_request.status == 0) {
+                alert("Email enviado, verifique sua caixa de entrada.");
+            } else if (http_request.status == 204) {
+                alert("O email informado não foi encontrado.");
+            } else {
+                alert("Informe um email para solicitar.");
+            }
+        }
+
+    }
+</script>
 </h:head>
 
 <h:body styleClass="fundo_login">
@@ -26,37 +71,21 @@
 		draggable="true" resizable="false" visible="true">
 		<p:panelGrid columns="1" styleClass="ui-panelgrid-blank">
 
-			<form method="post"
-				onsubmit="document.location='http://localhost:8080/SIGELAR/Restful/esqueci_senha/'+document.getElementById('email').value; return false;">
+			<form>
 
 				<h:outputLabel value="Insira o email cadastrado no sistema" />
 				<input id="email" size="70" />
 
-				<f:facet name="footer">
-					<p:row>
-						<c:if test="${param.erro == 'true'}">
-							<h:outputText value="Usuaio não cadastrado no sistema"
-								style="color: red; font-size: small;" />
-							<br />
-							<br />
-						</c:if>
-						
-						<c:if test="${param.erro == 'false'}">
-							<h:outputText value="Email enviado com sucesso!"
-								style="color: red; font-size: small;" />
-							<br />
-							<br />
-						</c:if>
+				<h:outputText id="msg" style="color: red; font-size: small;" />
 
-
-					</p:row>
-				</f:facet>
 				<p:outputPanel style="width: 100%; text-align:center">
 					<h:outputLabel
 						value="Será enviado um email com a nova senha para o email informado" />
 					<br />
-					<input type="submit" value="Solicitar" />
 					<h:button outcome="/login.xhtml" value="Voltar"></h:button>
+					<h:button id="button"
+						onclick="makeRequest(document.location='http://localhost:8080/SIGELAR/Restful/esqueci_senha/'+document.getElementById('email').value)"
+						value="Solicitar" />
 					<br />
 				</p:outputPanel>
 

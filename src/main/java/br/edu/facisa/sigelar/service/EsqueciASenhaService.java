@@ -2,12 +2,14 @@ package br.edu.facisa.sigelar.service;
 
 import java.io.Serializable;
 
-import javax.ws.rs.POST;
+import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
+
+import com.google.gson.Gson;
 
 import br.edu.facisa.sigelar.dao.UsuarioDAO;
 import br.edu.facisa.sigelar.domain.Usuario;
@@ -17,9 +19,9 @@ public class EsqueciASenhaService implements Serializable {
 
 	private static final long serialVersionUID = 8408200690871501014L;
 
-	@POST
+	@GET
 	@Path("{email}")
-	public void sendEmail(@PathParam("email") String email) {
+	public String sendEmail(@PathParam("email") String email) {
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		Usuario usuario = usuarioDAO.buscarPorEmail(email);
 
@@ -29,11 +31,15 @@ public class EsqueciASenhaService implements Serializable {
 				usuario.setPassword(geraSenha());
 				usuarioDAO.merge(usuario);
 				sendEmail(usuario);
+				Gson gson = new Gson();
+				String json = gson.toJson(usuario);
+				return json;
 			} catch (EmailException e) {
 				e.printStackTrace();
 			}
 
-		} 
+		}
+		return null; 
 	}
 
 	private String geraSenha() {
@@ -68,8 +74,8 @@ public class EsqueciASenhaService implements Serializable {
 		// Adicione um assunto
 		email.setSubject("Recuperação de senha - SIGELAR - ");
 		// Adicione a mensagem do email
-		email.setMsg("Olá " + user.getNome() + "\n Você solicitou o reset da sua senha de usuário do sistema SIGELAR"
-				+ "\n Sua nova senha é: " + user.getPassword() + "\n\n Atenciosamente.\n Equipe SIGELAR.");
+		email.setMsg("Olá, " + user.getNome() + ".\n\nVocê solicitou reset da sua senha de usuário do sistema SIGELAR"
+				+ "\n\nSua nova senha é: " + user.getPassword() + "\n\nAtenciosamente.\nEquipe SIGELAR.");
 		// Para autenticar no servidor é necessário chamar os dois métodos
 		// abaixo
 		System.out.println("autenticando...");
