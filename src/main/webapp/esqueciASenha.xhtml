@@ -24,7 +24,7 @@
 
     function makeRequest(url) {
         http_request = false;
-        console.log(window.XMLHttpRequest);
+        
         if (window.XMLHttpRequest) { // Mozilla, Safari,...
             http_request = new XMLHttpRequest();
             if (http_request.overrideMimeType) {
@@ -41,9 +41,10 @@
         }
 
         if (!http_request) {
-            alert('Giving up :( Cannot create an XMLHTTP instance');
+            alert('Não foi encontrada uma instância HTTP');
             return false;
         }
+        
         http_request.onreadystatechange = alertContents;
         http_request.open('GET', url, true);
         http_request.send(null);
