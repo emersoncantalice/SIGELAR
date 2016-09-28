@@ -29,13 +29,13 @@ public class EsqueciASenhaService implements Serializable {
 			try {
 				System.out.println(usuario.getNome());
 				usuario.setPassword(geraSenha());
-				usuarioDAO.merge(usuario);
 				sendEmail(usuario);
+				usuarioDAO.merge(usuario);
 				Gson gson = new Gson();
 				String json = gson.toJson(usuario);
 				return json;
 			} catch (EmailException e) {
-				e.printStackTrace();
+				return null;
 			}
 
 		}

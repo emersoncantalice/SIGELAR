@@ -9,89 +9,117 @@
 <h:head>
 	<title>SIGELAR - Login</title>
 	<h:outputStylesheet library="css" name="estilo.css" />
+	<h:outputStylesheet library="css" name="bootstrap-2.0.0.css" />
 	<link rel="shortcut icon" type="image/x-icon"
 		href="#{resource['images/icon.jpg']}" />
-	<style type="text/css">
-.ui-widget {
-	font-size: 10px;
-	!
-	important;
-}
-</style>
+
+	<h:outputScript target="body" library="javaScript"
+		name="bootstrap-modal-2.0.0.js" />
+	<h:outputScript target="body" library="javaScript"
+		name="bootstrap-transition-2.0.0.js" />
+	<h:outputScript target="body" library="javaScript"
+		name="bootbox.min.js" />
+	<h:outputScript target="body" library="primefaces"
+		name="jquery/jquery.js" />
+
 	<script>
+	
+	var http_request = false;
 
-    var http_request = false;
+	function verificaCampos() {
 
-    function makeRequest(url) {
-        http_request = false;
+
+		 if (document.getElementById('email').value == null || document.getElementById('email').value == "") {
+			bootbox.alert("<p><strong> Favor preencher o campo email. Só assim podemos enviar uma nova senha</strong></p>");
+		 	return false;
+	     } else {
+			 http_request = false;
         
-        if (window.XMLHttpRequest) { // Mozilla, Safari,...
-            http_request = new XMLHttpRequest();
-            if (http_request.overrideMimeType) {
-                http_request.overrideMimeType('text/xml');
-            }
-        } else if (window.ActiveXObject) { // IE
-            try {
-                http_request = new ActiveXObject("Msxml2.XMLHTTP");
-            } catch (e) {
-                try {
-                    http_request = new ActiveXObject("Microsoft.XMLHTTP");
-                } catch (e) {}
-            }
-        }
+        	if (window.XMLHttpRequest) { // Mozilla, Safari,...
+            	http_request = new XMLHttpRequest();
+            	if (http_request.overrideMimeType) {
+              	  http_request.overrideMimeType('text/xml');
+            	}
+        	} else if (window.ActiveXObject) { // IE
+           	 	try {
+                	http_request = new ActiveXObject("Msxml2.XMLHTTP");
+            	} catch (e) {
+                	try {
+                    	http_request = new ActiveXObject("Microsoft.XMLHTTP");
+                	} catch (e) {}
+            	}
+        	}
 
-        if (!http_request) {
-            alert('Não foi encontrada uma instância HTTP');
-            return false;
-        }
-        
-        http_request.onreadystatechange = alertContents;
-        http_request.open('GET', url, true);
-        http_request.send(null);
+        	if (!http_request) {
+            	alert('Não foi encontrada uma instância HTTP');
+            	return false;
+        	}
 
-    }
+
+	        var url = "http://localhost:8080/SIGELAR/Restful/esqueci_senha/"+document.getElementById('email').value;
+
+		    http_request.onreadystatechange = alertContents;
+        	http_request.open('GET', url, true);
+       		http_request.send(null);
+		 }
+		 
+	}
 
     function alertContents() {
-        if (http_request.readyState == 4) {
-            if (http_request.status == 0) {
-                alert("Email enviado, verifique sua caixa de entrada.");
+//         alert(http_request.readyState + "status: " + http_request.status)
+         if (http_request.readyState == 2) {
+        	 
+         } 
+         
+         if (http_request.readyState == 4) {
+            if (http_request.status == 200) {
+            	bootbox.alert("<p><strong>Email enviado! Verifique sua caixa de entrada.</strong></p>");
             } else if (http_request.status == 204) {
-                alert("O email informado não foi encontrado.");
+            	bootbox.alert("<p><strong> O email informado não foi encontrado no sistema </strong> </p>");
             } else {
-                alert("Informe um email para solicitar.");
+            	bootbox.alert("<p><strong>Não foi possivel enviar o email</strong>, por favor, <ul> <li> Contacte o adminstrador (83) 99139-0410 </li> </ul> </p>");
             }
         }
 
     }
+    
 </script>
 </h:head>
 
 <h:body styleClass="fundo_login">
+
 	<p:dialog header="Esqueci minha senha" id="dialog" responsive="true"
-		closable="false" showEffect="shake" styleClass="login"
+		closable="false" showEffect="shake"
 		draggable="true" resizable="false" visible="true">
-		<p:panelGrid columns="1" styleClass="ui-panelgrid-blank">
-
-			<form>
-
-				<h:outputLabel value="Insira o email cadastrado no sistema" />
-				<input id="email" size="70" />
-
-				<h:outputText id="msg" style="color: red; font-size: small;" />
-
-				<p:outputPanel style="width: 100%; text-align:center">
-					<h:outputLabel
-						value="Será enviado um email com a nova senha para o email informado" />
-					<br />
-					<h:button outcome="/login.xhtml" value="Voltar"></h:button>
-					<h:button id="button"
-						onclick="makeRequest(document.location='http://localhost:8080/SIGELAR/Restful/esqueci_senha/'+document.getElementById('email').value)"
-						value="Solicitar" />
-					<br />
-				</p:outputPanel>
+		<p:panelGrid columns="1" style="text-align:center">
 
 
-			</form>
+			<h:outputLabel value="Insira o email cadastrado no sistema" />
+			<input id="email" style="width: 400px;"/>
+
+			<h:outputLabel
+				value="Será enviado um email com a nova senha para o email informado" />
+
+			<p:panelGrid columns="2" style="text-align:center">
+
+				<h:panelGrid style="width: 200px;">
+
+					<p>
+						<a href="http://localhost:8080/SIGELAR/" class="btn"><i></i>
+							Voltar
+						</a>
+					</p>
+				</h:panelGrid>
+				<h:panelGrid style="width: 200px;">
+					<p>
+						<a onclick="verificaCampos()" class="bs-alert btn"><i></i>
+							Solicitar
+						</a>
+					</p>
+				</h:panelGrid>
+			</p:panelGrid>
+
+
 		</p:panelGrid>
 	</p:dialog>
 

@@ -29,7 +29,6 @@ public class BeanMenuPrincipal implements Serializable {
 	private String ultimoAcesso;
 	private String hostname;
 	private String ip;
-	private int idPage;
 	private Usuario usuario;
 
 	@PostConstruct
@@ -59,19 +58,6 @@ public class BeanMenuPrincipal implements Serializable {
 			}
 		} catch (UnknownHostException e) {
 			Messages.addGlobalError("Erro ao carregar a página inicial");
-		}
-	}
-	
-	public void searchPage() throws IOException {
-		switch (idPage) {
-		case 1:
-			Faces.redirect("pages/funcionario/ParticipanteCRUD.xhtml");
-			break;
-		case 2:
-			Faces.redirect("dashboard/DashBoard.xhtml");
-			break;
-		default:
-			Messages.addGlobalError("Página não encontrada");
 		}
 	}
 
@@ -105,14 +91,6 @@ public class BeanMenuPrincipal implements Serializable {
 
 	public void setIp(String ip) {
 		this.ip = ip;
-	}
-
-	public int getIdPage() {
-		return idPage;
-	}
-
-	public void setIdPage(int idPage) {
-		this.idPage = idPage;
 	}
 
 	public Usuario getUsuario() {

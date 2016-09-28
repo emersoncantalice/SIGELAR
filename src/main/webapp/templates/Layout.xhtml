@@ -12,6 +12,7 @@
 	</f:facet>
 
 	<title>SIGELAR - Sistema de Gestão Hospitalar</title>
+	
 	<link rel="shortcut icon" type="image/x-icon"
 		href="#{resource['images/icon.png']}" />
 
@@ -19,10 +20,9 @@
 	<h:outputStylesheet library="css" name="layout.css" />
 	<h:outputStylesheet library="css" name="components.css" />
 	<h:outputStylesheet library="css" name="estilo.css" />
-
-	<h:outputScript target="body" library="primefaces"
-		name="jquery/jquery.js" />
+	<h:outputScript target="body" library="primefaces" name="jquery/jquery.js" />
 	<h:outputScript target="body" library="javaScript" name="app.js" />
+	
 </h:head>
 
 <h:body>
@@ -33,29 +33,6 @@
 		</h:link>
 		<a href="/pages/Home.xhtml" class="aw-toggle  js-toggle"><i
 			class="fa  fa-bars"></i></a>
-
-		<h:panelGrid columns="4" styleClass="informacoes">
-			<h:panelGrid columns="2" style="margin-left:5%">
-				<h:graphicImage height="20px" library="images" name="pc.png" />
-				<h:outputText style="font-weight: bold; color:white"
-					value="#{beanMenuPrincipal.hostname}" />
-			</h:panelGrid>
-			<h:panelGrid columns="2" style="margin-left:5%">
-				<h:graphicImage height="20px" library="images" name="ip.png" />
-				<h:outputText style="font-weight: bold; color:white"
-					value="#{beanMenuPrincipal.ip}" />
-			</h:panelGrid>
-			<h:panelGrid columns="2" style="margin-left:5%">
-				<h:graphicImage height="20px" library="images" name="email.png" />
-				<h:link style="font-weight: bold; color:white"
-					value="suporte@sigelar.com.br" />
-			</h:panelGrid>
-			<h:panelGrid columns="2" style="margin-left:5%">
-				<h:graphicImage height="20px" library="images" name="site.png" />
-				<h:link style="font-weight: bold; color:white"
-					value="www.sigelar.edu.br" />
-			</h:panelGrid>
-		</h:panelGrid>
 	</header>
 
 	<aside class="aw-sidebar  js-sidebar">

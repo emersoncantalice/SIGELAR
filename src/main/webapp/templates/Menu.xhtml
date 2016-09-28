@@ -67,18 +67,6 @@
 
 			</p:panelMenu>
 			
-			<p:outputPanel id="rd" styleClass="rodape">
-				<p:panelGrid columns="2">
-					<p:inputText id="idpage"  size="16" value="#{beanMenuPrincipal.idPage}" onclick="this.value='';"/>
-					<p:commandButton icon="ui-icon-circle-zoomin"
-						actionListener="#{beanMenuPrincipal.searchPage()}"
-						update="msgMenu" 
-						onsuccess="setTimeout ('$(\'#formMenu\\\\:msgMenu\').hide()', 3000);" />
-				</p:panelGrid>
-				<p:messages id="msgMenu" styleClass="msg-menu"></p:messages>
-			</p:outputPanel>
-			<p:hotkey bind="f12" update="msgMenu"
-					action="#{beanMenuPrincipal.searchPage()}" />
 		</h:form>
 	</div>
 

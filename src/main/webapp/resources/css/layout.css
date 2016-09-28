@@ -1,5 +1,6 @@
 /* TOPBAR */
 .aw-topbar {
+	text-align: center;
 	position: fixed;
 	top: 0;
 	right: 0;
@@ -9,7 +10,7 @@
 	background-color: #0000a0;
 }
 
-.aw-topbar > img {
+.aw-topbar>img {
 	margin-top: 10px;
 	margin-left: 5px;
 }
@@ -33,11 +34,10 @@
 	margin-left: 0px;
 }
 
-@media (min-width: 960px) {
+@media ( min-width : 960px) {
 	.aw-sidebar {
 		margin-left: 0px;
 	}
-	
 	.aw-sidebar.is-toggled {
 		margin-left: -211px;
 	}
@@ -50,17 +50,16 @@
 	transition: margin-left 0.5s;
 }
 
-@media (min-width: 960px) {
+@media ( min-width : 960px) {
 	.aw-content {
 		margin-left: 210px;
 	}
-	
 	.aw-content.is-toggled {
 		margin-left: 0;
 	}
 }
 
-@media (max-width: 778px) {
+@media ( max-width : 778px) {
 	.informacoes {
 		display: none;
 	}
