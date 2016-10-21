@@ -9,8 +9,6 @@ import javax.ws.rs.PathParam;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
 
-import com.google.gson.Gson;
-
 import br.edu.facisa.sigelar.dao.UsuarioDAO;
 import br.edu.facisa.sigelar.domain.Usuario;
 
@@ -31,9 +29,7 @@ public class EsqueciASenhaService implements Serializable {
 				usuario.setPassword(geraSenha());
 				sendEmail(usuario);
 				usuarioDAO.merge(usuario);
-				Gson gson = new Gson();
-				String json = gson.toJson(usuario);
-				return json;
+				return "Ok";
 			} catch (EmailException e) {
 				return null;
 			}

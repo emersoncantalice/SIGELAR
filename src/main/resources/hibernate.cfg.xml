@@ -40,6 +40,7 @@
 		<!-- Mapeamento de Entidades -->
 		
 		<mapping class="br.edu.facisa.sigelar.domain.Usuario" />
+		<mapping class="br.edu.facisa.sigelar.domain.RegraAcesso" />
 	
 	</session-factory>
 </hibernate-configuration>

@@ -2,6 +2,7 @@ package br.edu.facisa.sigelar.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,6 +17,7 @@ public class GenericDomain implements Serializable {
 	private static final long serialVersionUID = -4009250693177694645L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(unique = true)
 	private Long id;
 
 	public Long getId() {

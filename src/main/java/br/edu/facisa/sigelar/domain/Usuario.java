@@ -1,9 +1,12 @@
 package br.edu.facisa.sigelar.domain;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -11,11 +14,11 @@ import javax.persistence.TemporalType;
 public class Usuario extends GenericDomain {
 
 	private static final long serialVersionUID = 201404140102L;
-	
+
 	@Column(length = 300, nullable = false)
 	private String nome;
 
-	@Column(length = 32, nullable = false)
+	@Column(length = 32, nullable = false, unique = true)
 	private String username;
 
 	@Column(length = 32, nullable = false)
@@ -24,16 +27,16 @@ public class Usuario extends GenericDomain {
 	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataUltimoAcesso;
-	
+
 	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataAcessoAtual;
 
-	@Column(length = 32, nullable = false)
-	private String role;
-	
 	@Column(length = 50, nullable = false)
 	private String email;
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "usuario")
+	private Set<RegraAcesso> regras;
 
 	public String getNome() {
 		return nome;
@@ -75,20 +78,20 @@ public class Usuario extends GenericDomain {
 		this.dataAcessoAtual = dataAcessoAtual;
 	}
 
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
-
 	public String getEmail() {
 		return email;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Set<RegraAcesso> getRegras() {
+		return regras;
+	}
+
+	public void setRegras(Set<RegraAcesso> regras) {
+		this.regras = regras;
 	}
 
 }

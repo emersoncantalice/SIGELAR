@@ -15,6 +15,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import br.edu.facisa.sigelar.dao.UsuarioDAO;
+import br.edu.facisa.sigelar.domain.RegraAcesso;
 import br.edu.facisa.sigelar.domain.Usuario;
 
 @Named
@@ -37,8 +38,10 @@ public class AutenticadorLogin implements AuthenticationProvider {
 		if (user != null) {
 			List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
 			
-			grantedAuthorities.add(new SimpleGrantedAuthority(user.getRole()));
-
+			for (RegraAcesso userRole : user.getRegras()) {
+				grantedAuthorities.add(new SimpleGrantedAuthority(userRole.getDescricao()));
+			}
+			
 			UserDetails userDetails = new User(username, password, grantedAuthorities);
 			
 			return new UsernamePasswordAuthenticationToken(userDetails, password, grantedAuthorities);
