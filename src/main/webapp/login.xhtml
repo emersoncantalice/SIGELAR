@@ -9,64 +9,61 @@
 <h:head>
 	<title>SIGELAR - Login</title>
 	<h:outputStylesheet library="css" name="estilo.css" />
-	
+
 	<link rel="shortcut icon" type="image/x-icon"
 		href="#{resource['images/icon.png']}" />
 		
-	<style type="text/css">
-		.ui-widget {
-			font-size: 10px; !important;
-		}
-	</style>
 </h:head>
 
 <h:body onload="document.content.dialog.login.j_username.focus();"
 	styleClass="fundo_login">
 
+	<p:panelGrid columns="1" styleClass="panel_login">
 
-	<p:dialog header="Acesso ao Sistema" id="dialog"
-		responsive="true" closable="false" showEffect="shake"
-		styleClass="login" draggable="true" resizable="false" visible="true">
-		<form name='login' action="j_spring_security_check" method='post'>
-			<div align="center" style="padding-bottom: 2%;">
-				<p:graphicImage library="images" name="icon_enfermeira.png"
-					height="60px">
-				</p:graphicImage>
-				<br />
-			</div>
-			<p:panelGrid columns="2" layout="grid"
-				styleClass="ui-panelgrid-blank"
-				columnClasses="ui-grid-col-4,ui-grid-col-8">
-				<h:outputLabel for="j_username" value="#{labels.login_username}: " />
-				<p:inputText id="j_username" requerid="true" />
+		<div>
+			<p:graphicImage library="images" name="logo_principal_sigelar.png" style="height:200px"></p:graphicImage>
+		</div>
 
-				<h:outputLabel for="j_password" value="#{labels.login_password}: " />
-				<p:password id="j_password" requerid="true" />
-	
-				<p:panelGrid/>
-				<p:panelGrid>
-					<h:link outcome="/esqueciASenha.xhtml">Esqueci minha senha</h:link>
+		<p:panel id="dialog" responsive="true" styleClass="login">
+			<form name='login' action="j_spring_security_check" method='post'>
+				<br /> <br /> <br />
+				<div align="center" style="padding-bottom: 2%;">
+					<p:outputLabel value="Login - Sistema SIGELAR" styleClass="hTitulo"></p:outputLabel>
+					<br /> <br /> <br />
+  				</div>
+				<p:panelGrid columns="2" layout="grid"
+					styleClass="ui-panelgrid-blank"
+					columnClasses="ui-grid-col-4,ui-grid-col-8">
+					<h:outputLabel for="j_username" value="#{labels.login_username}: " />
+					<p:inputText id="j_username" requerid="true" />
+
+					<h:outputLabel for="j_password" value="#{labels.login_password}: " />
+					<p:password id="j_password" requerid="true" />
+
+					<p:panelGrid />
+					<p:panelGrid>
+						<h:link outcome="/esqueciASenha.xhtml">Esqueci minha senha</h:link>
+					</p:panelGrid>
+
+					<f:facet name="footer">
+						<p:row>
+							<c:if test="${param.erro == 'true'}">
+								<h:outputText value="#{labels.login_invalid}"
+									style="color: red; font-size: small;" />
+								<br />
+								<br />
+							</c:if>
+
+							<p:outputPanel style="width: 100%; text-align:center"
+								layout="block">
+								<input name="submit" type="submit" class="botao"
+									value="#{labels.login_action_go}" />
+							</p:outputPanel>
+						</p:row>
+					</f:facet>
 				</p:panelGrid>
-
-				<f:facet name="footer">
-					<p:row>
-						<c:if test="${param.erro == 'true'}">
-							<h:outputText value="#{labels.login_invalid}"
-								style="color: red; font-size: small;" />
-							<br />
-							<br />
-						</c:if>
-
-						<p:outputPanel style="width: 100%; text-align:center"
-							layout="block">
-							<input name="submit" type="submit"
-								value="#{labels.login_action_go}" />
-						</p:outputPanel>
-					</p:row>
-				</f:facet>
-			</p:panelGrid>
-		</form>
-	</p:dialog>
-
+			</form>
+		</p:panel>
+	</p:panelGrid>
 </h:body>
 </html>

@@ -7,11 +7,11 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<title>SIGELAR - Login</title>
+	<title>SIGELAR - Esqueci a senha</title>
 	<h:outputStylesheet library="css" name="estilo.css" />
 	<h:outputStylesheet library="css" name="bootstrap-2.0.0.css" />
 	<link rel="shortcut icon" type="image/x-icon"
-		href="#{resource['images/icon.jpg']}" />
+		href="#{resource['images/icon.png']}" />
 
 	<h:outputScript target="body" library="javaScript"
 		name="bootstrap-modal-2.0.0.js" />
@@ -88,40 +88,47 @@
 
 <h:body styleClass="fundo_login">
 
-	<p:dialog header="Esqueci minha senha" id="dialog" responsive="true"
-		closable="false" showEffect="shake"
-		draggable="true" resizable="false" visible="true">
-		<p:panelGrid columns="1" style="text-align:center">
+	<p:panelGrid columns="1" styleClass="panel_login">
+
+		<div>
+			<p:graphicImage library="images" name="logo_principal_sigelar.png"
+				style="height:200px"></p:graphicImage>
+		</div>
+
+		<p:panel id="dialog" >
+			<p:panelGrid columns="1" styleClass="login">
+			
+				<p:outputLabel value="Esqueci a senha - Sistema SIGELAR" styleClass="h1"></p:outputLabel>
+					<br /> <br /> <br />
 
 
-			<h:outputLabel value="Insira o email cadastrado no sistema" />
-			<input id="email" style="width: 400px;"/>
+				<h:outputLabel value="Insira o email cadastrado no sistema" />
+				<input id="email" style="width: 400px;" />
 
-			<h:outputLabel
-				value="Será enviado um email com a nova senha para o email informado" />
+				<h:outputLabel
+					value="Será enviado um email com a nova senha para o email informado" />
 
-			<p:panelGrid columns="2" style="text-align:center">
+				<p:panelGrid columns="2" style="text-align:center">
 
-				<h:panelGrid style="width: 200px;">
+					<h:panelGrid style="width: 200px;">
 
-					<p>
-						<a href="http://localhost:8080/SIGELAR/" class="btn"><i></i>
-							Voltar
-						</a>
-					</p>
-				</h:panelGrid>
-				<h:panelGrid style="width: 200px;">
-					<p>
-						<a onclick="verificaCampos()" class="bs-alert btn"><i></i>
-							Solicitar
-						</a>
-					</p>
-				</h:panelGrid>
+						<p>
+							<a href="login.xhtml" class="btn"><i></i>
+								Voltar </a>
+						</p>
+					</h:panelGrid>
+					<h:panelGrid style="width: 200px;">
+						<p>
+							<a onclick="verificaCampos()" class="bs-alert btn"><i></i>
+								Solicitar </a>
+						</p>
+					</h:panelGrid>
+				</p:panelGrid>
+
+
 			</p:panelGrid>
-
-
-		</p:panelGrid>
-	</p:dialog>
+		</p:panel>
+	</p:panelGrid>
 
 </h:body>
 </html>

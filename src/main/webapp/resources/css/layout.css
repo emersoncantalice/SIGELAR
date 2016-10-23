@@ -7,7 +7,25 @@
 	left: 0;
 	min-height: 50px;
 	z-index: 9999;
-	background-color: #0000a0;
+	background-color: #234ed2;
+}
+
+.ui-panelmenu .ui-panelmenu-header a {
+	text-align: center;
+	background-color: #5bc0de !important;
+	color: white;
+	text-shadow: none;
+	text-transform: uppercase;
+	font-size: small;
+}
+
+.ui-panelmenu .ui-panelmenu-header a:hover {
+	text-align: center;
+	background-color: #3900ac !important;
+	color: white;
+	text-shadow: none;
+	text-transform: uppercase;
+	font-size: small;
 }
 
 .aw-topbar>img {
@@ -26,8 +44,8 @@
 	z-index: 9998;
 	transition: margin-left 0.5s;
 	overflow-y: auto;
-	background-color: #f6f6f6;
-	border-right: 1px solid #8080ff;
+	background-color: #cccccc;
+	border-right: 1px solid #a7a7a7;
 }
 
 .aw-sidebar.is-toggled {

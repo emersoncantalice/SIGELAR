@@ -8,15 +8,16 @@
 		<h:form id="formMenu">
 			<p:outputPanel styleClass="fundo_icone_usuario">
 				<p:panel style="text-align: center">
-				<p:clock pattern="HH:mm:ss dd/MM/yyyy"/>
-				<p:separator />
-				<h:outputText value="Bem-vindo, "/>
-				<h:outputText style="font-weight: bold"
-					value="#{beanMenuPrincipal.nomeUsuario}." />
-				<br />
-				<h:outputText value="Último acesso: " />
-				<h:outputText style="font-weight: bold"
-					value="#{beanMenuPrincipal.ultimoAcesso}" />
+					<p:clock pattern="HH:mm:ss dd/MM/yyyy" />
+					<br/>
+					<hr/>
+					<h:outputText value="Bem-vindo, " />
+					<h:outputText style="font-weight: bold"
+						value="#{beanMenuPrincipal.nomeUsuario}." />
+					<br/>
+					<h:outputText value="Último acesso: " />
+					<h:outputText style="font-weight: bold"
+						value="#{beanMenuPrincipal.ultimoAcesso}" />
 				</p:panel>
 
 				<!-- 				<sec:authorize ifAllGranted="ROLE_ADMIN"> -->
@@ -47,18 +48,15 @@
 					</p:submenu>
 				</sec:authorize>
 
-				<p:submenu label="#{labels.menu_cadastros}">
-					<p:menuitem value="Médicos"
-						url="#"
-						icon="ui-icon-note" />
-					<p:menuitem value="Produtos"
-						url="#" icon="ui-icon-cart" />
+				<p:submenu label="CADASTROS">
+					<p:menuitem value="Médicos" url="#" icon="ui-icon-note" />
+					<p:menuitem value="Produtos" url="#" icon="ui-icon-cart" />
 					<p:menuitem value="Funcionario"
 						url="/pages/funcionario/funcionarioCRUD.xhtml"
 						icon="ui-icon-person" />
 				</p:submenu>
 
-				<p:submenu label="#{labels.menu_settings}">
+				<p:submenu label="CONFIGURAÇÕES">
 					<p:menuitem value="#{labels.menu_language}"
 						url="/pages/Linguagem.xhtml" ajax="false" icon="ui-icon-wrench" />
 					<p:menuitem value="#{labels.logout}"
@@ -66,7 +64,7 @@
 				</p:submenu>
 
 			</p:panelMenu>
-			
+
 		</h:form>
 	</div>
 

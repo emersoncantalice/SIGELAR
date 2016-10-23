@@ -22,6 +22,7 @@
 	<h:outputStylesheet library="css" name="estilo.css" />
 	<h:outputScript target="body" library="primefaces" name="jquery/jquery.js" />
 	<h:outputScript target="body" library="javaScript" name="app.js" />
+	<h:outputStylesheet library="css" name="bootstrap-2.0.0.css" />
 	
 </h:head>
 
@@ -29,10 +30,11 @@
 
 	<header class="aw-topbar">
 		<h:link outcome="/pages/Home.xhtml">
-			<p:graphicImage library="images" name="logo_barra_menu.png" style="margin:0.6%;"/>
+			<p:graphicImage library="images" name="logo_barra_menu.png" style="padding:0.2%; margin-top:7px"/>
 		</h:link>
-		<a href="/pages/Home.xhtml" class="aw-toggle  js-toggle"><i
-			class="fa  fa-bars"></i></a>
+			<a href="/pages/Home.xhtml" class="aw-toggle  js-toggle">
+			<p:graphicImage library="images" name="bt_menu.png" styleClass="imagemMenu"/>
+			</a>
 	</header>
 
 	<aside class="aw-sidebar  js-sidebar">
