@@ -2,15 +2,21 @@ package br.edu.facisa.sigelar.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class Participante extends GenericDomain {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 2361272429411761361L;
 
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id_participante" ,unique = true)
+	private Long id;
+	
 	@Column(length = 100, nullable = false)
 	private String nome;
 

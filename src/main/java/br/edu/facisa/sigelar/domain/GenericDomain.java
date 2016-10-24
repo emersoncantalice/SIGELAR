@@ -10,11 +10,10 @@ import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public class GenericDomain implements Serializable {
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -4009250693177694645L;
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(unique = true)

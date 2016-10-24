@@ -8,9 +8,10 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Funcionario extends GenericDomain {
+public class Funcionario extends GenericDomain{
 
 	private static final long serialVersionUID = 2361272429411761361L;
+
 
 	@Column(length = 300, nullable = false)
 	private String nome;

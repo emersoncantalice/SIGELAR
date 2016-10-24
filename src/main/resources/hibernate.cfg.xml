@@ -9,7 +9,7 @@
 		
 		<property name="connection.url">jdbc:postgresql://127.0.0.1:5432/sigelar</property>
 		<property name="connection.username">postgres</property>
-		<property name="connection.password">sigelar123</property>
+		<property name="connection.password">shinigami</property>
 		
 		<!-- JDBC connection pool (use the built-in) - Sessões ao mesmo tempo -->
 		<property name="connection.pool_size">1</property>
@@ -31,7 +31,7 @@
 		
 		<!-- Drop and re-create the database schema on startup - Cria as tabelas 
 			do BD -->
-		<property name="hbm2ddl.auto">update</property>
+		<property name="hbm2ddl.auto">create-drop</property>
 		
 		<property name="hibernate.show_sql">true</property>
 		
@@ -41,6 +41,15 @@
 		
 		<mapping class="br.edu.facisa.sigelar.domain.Usuario" />
 		<mapping class="br.edu.facisa.sigelar.domain.RegraAcesso" />
+		<mapping class="br.edu.facisa.sigelar.domain.Hospital" />
+		<mapping class="br.edu.facisa.sigelar.domain.Pessoa" />
+		<mapping class="br.edu.facisa.sigelar.domain.Medico" />
+		<mapping class="br.edu.facisa.sigelar.domain.Almoxarifado" />
+		<mapping class="br.edu.facisa.sigelar.domain.Produtos" />
+		<mapping class="br.edu.facisa.sigelar.domain.PrescricaoMedica" />
+		<mapping class="br.edu.facisa.sigelar.domain.Paciente" />
+		
+		
 	
 	</session-factory>
 </hibernate-configuration>
