@@ -25,7 +25,7 @@ public class Almoxarifado implements Serializable{
 	
 	
 	@OneToMany(mappedBy = "almoxarifado")
-	private List<Produtos> produtos;
+	private List<Produto> produtos;
 	
 	@OneToMany(mappedBy = "almoxarifado_user")
 	private List<Usuario> usuarios;

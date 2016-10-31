@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "produtos")
-public class Produtos implements Serializable{
+public class Produto implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -39,7 +39,7 @@ public class Produtos implements Serializable{
 	@Column(name ="nome", length = 100, nullable = false, unique = true)
 	private String nome;
 
-	public Produtos(Almoxarifado almoxarifado, String codigoProduto, int quantidade, String referencia, String nome) {
+	public Produto(Almoxarifado almoxarifado, String codigoProduto, int quantidade, String referencia, String nome) {
 		this.almoxarifado = almoxarifado;
 		this.codigoProduto = codigoProduto;
 		this.quantidade = quantidade;
