@@ -28,14 +28,15 @@ create tadabase SIGELAR;
     );
 
     create table Usuario (
-        id_consulta  bigserial not null,
+        id_user int8 not null,
         dataAcessoAtual timestamp not null,
         dataUltimoAcesso timestamp not null,
         email varchar(50) not null,
         nome varchar(300) not null,
         password varchar(32) not null,
         username varchar(32) not null,
-        primary key (id_consulta)
+        id_almoxarifado int8,
+        primary key (id_user)
     );
 
     create table almoxarifado (
@@ -96,16 +97,16 @@ create tadabase SIGELAR;
 
     alter table Usuario 
         add constraint UK_471i15k6vbj1lfsfb19getcdi unique (username);
-
+ 
     alter table produtos 
         add constraint UK_s6k1hxg3cysks5ofysv0jhhdh unique (codigo_produto);
-
+ 
     alter table produtos 
         add constraint UK_68les18ejq8cjyxw9snrbtd7t unique (nome);
 
     alter table produtos 
         add constraint UK_q7u1mtj26qlddirg4en9h3jo7 unique (referencia);
-
+ 
     alter table Funcionario 
         add constraint FK_2acj82h4rhnhdo9h135ylcj83 
         foreign key (id) 
@@ -127,15 +128,15 @@ create tadabase SIGELAR;
         references Usuario;
 
     alter table Usuario 
-        add constraint FK_fm6osyt90e3c8ivsswng42o7y 
-        foreign key (id_consulta) 
+        add constraint FK_huev1se6q326387p5fevalh5 
+        foreign key (id_almoxarifado) 
         references almoxarifado;
 
     alter table consultas 
         add constraint FK_nief1ey3qtdb2g8m3lnmgs96q 
         foreign key (id_usuario) 
         references prescricoes_medicas;
-
+ 
     alter table consultas 
         add constraint FK_nief1ey3qtdb2g8m3lnmgs96q 
         foreign key (id_usuario) 
@@ -165,4 +166,5 @@ create tadabase SIGELAR;
         add constraint FK_hv00dvffhooxomghv2ssoq06w 
         foreign key (id_almoxarifado) 
         references almoxarifado;
+
 

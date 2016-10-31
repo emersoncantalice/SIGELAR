@@ -4,16 +4,15 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -23,13 +22,13 @@ public class Usuario implements Serializable{
 	private static final long serialVersionUID = 201404140102L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_consulta")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id_user")
 	private Long id;
 	
-	@OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER, orphanRemoval = true )
-	@PrimaryKeyJoinColumn
-	private Almoxarifado almoxarifado;
+	@ManyToOne
+	@JoinColumn(name = "id_almoxarifado")
+	private Almoxarifado almoxarifado_user;
 
 	
 	@Column(length = 300, nullable = false)

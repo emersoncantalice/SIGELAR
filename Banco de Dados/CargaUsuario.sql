@@ -1,6 +1,6 @@
 select * from usuario;
 
-insert into usuario (id, dataacessoatual, dataultimoacesso, email, nome, password, username)
+insert into usuario (id_user, dataacessoatual, dataultimoacesso, email, nome, password, username)
     values (1, '1990-01-01', '1990-01-01', 'emersoncantalicee@gmail.com', 'Emerson Cantalice', '123', 'escantalice'),
 	   (2, '1990-01-01', '1990-01-01', 'dogllas12@hotmail.com', 'Doglas Lima', '123', 'shinigami');
 
