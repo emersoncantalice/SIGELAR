@@ -7,14 +7,12 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
 public class Paciente extends Pessoa{
-
-	private static final long serialVersionUID = 1L;
+	
+	private static final long serialVersionUID = -9053662281108008689L;
 	
 	@Column(name = "plano_de_saude", length = 15)
 	private String planoDeSaude;
 	
-	public Paciente(String nome, String cpf) {
-		super(nome, cpf);
-	}
+	
 
 }
