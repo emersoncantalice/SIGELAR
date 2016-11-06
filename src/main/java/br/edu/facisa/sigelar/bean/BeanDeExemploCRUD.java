@@ -19,18 +19,18 @@ import org.omnifaces.util.Messages;
 
 import com.google.gson.Gson;
 
-import br.edu.facisa.sigelar.domain.Participante;
+import br.edu.facisa.sigelar.domain.ExemploDomain;
 import br.edu.facisa.sigelar.util.EnumCursos;
 import br.edu.facisa.sigelar.util.EnumOperacoesCRUD;
 
 @ManagedBean
 @ViewScoped
-public class BeanParticipanteCRUD implements Serializable {
+public class BeanDeExemploCRUD implements Serializable {
 
 	private static final long serialVersionUID = 4952476482356094470L;
-	private Participante participante;
-	private List<Participante> participantes;
-	private List<Participante> participantesFiltrados;
+	private ExemploDomain participante;
+	private List<ExemploDomain> participantes;
+	private List<ExemploDomain> participantesFiltrados;
 	private EnumOperacoesCRUD operacao;
 	private List<SelectItem> listaAreasInteresse;
 	private List<SelectItem> listaPeriodos;
@@ -42,12 +42,12 @@ public class BeanParticipanteCRUD implements Serializable {
 	public void init() {
 		listar();
 	}
-	
+
 	public void instanciarNovo() {
 
 		try {
 
-			participante = new Participante();
+			participante = new ExemploDomain();
 			operacao = EnumOperacoesCRUD.CADASTAR;
 
 			listar();
@@ -87,17 +87,18 @@ public class BeanParticipanteCRUD implements Serializable {
 
 	public void excluir(ActionEvent event) {
 		try {
-			
-			participante = (Participante) event.getComponent().getAttributes().get("selecionadoCorrente");
-			
+
+			participante = (ExemploDomain) event.getComponent().getAttributes().get("selecionadoCorrente");
+
 			Client cliente = ClientBuilder.newClient();
-			WebTarget pathService = cliente.target(CAMINHO_SERVICO + "/participante/").path("{codigo}").resolveTemplate("codigo", participante.getId());
+			WebTarget pathService = cliente.target(CAMINHO_SERVICO + "/participante/").path("{codigo}")
+					.resolveTemplate("codigo", participante.getId());
 			System.out.println("AQUI CHEGUEI");
 			pathService.request().delete();
-			
+
 			listar();
-			
-			Messages.addGlobalInfo("Participante: " + participante.getNome() + " excluido com sucesso!");
+
+			Messages.addGlobalInfo("ExemploDomain: " + participante.getNome() + " excluido com sucesso!");
 		} catch (Exception e) {
 			Messages.addGlobalError("Erro ao excluir o participante");
 		}
@@ -106,8 +107,8 @@ public class BeanParticipanteCRUD implements Serializable {
 	public void editar(ActionEvent event) {
 
 		try {
-			
-			participante = (Participante) event.getComponent().getAttributes().get("selecionadoCorrente");
+
+			participante = (ExemploDomain) event.getComponent().getAttributes().get("selecionadoCorrente");
 			operacao = EnumOperacoesCRUD.EDITAR;
 			System.out.println(participante);
 			popularCursos();
@@ -125,10 +126,10 @@ public class BeanParticipanteCRUD implements Serializable {
 			String json = pathService.request().get(String.class);
 
 			Gson gson = new Gson();
-			Participante[] participantesVetor = gson.fromJson(json, Participante[].class);
+			ExemploDomain[] participantesVetor = gson.fromJson(json, ExemploDomain[].class);
 			participantes = Arrays.asList(participantesVetor);
 			participantesFiltrados = participantes;
-			
+
 		} catch (Exception e) {
 			Messages.addGlobalError("Erro ao listar participantes");
 		}
@@ -143,7 +144,7 @@ public class BeanParticipanteCRUD implements Serializable {
 				Gson gson = new Gson();
 				String json = gson.toJson(participante);
 				pathService.request().put(Entity.json(json));
-				Messages.addGlobalInfo("Participante: " + participante.getNome() + " editado com sucesso!");
+				Messages.addGlobalInfo("ExemploDomain: " + participante.getNome() + " editado com sucesso!");
 				listar();
 			} catch (Exception e) {
 				Messages.addGlobalError("Ocorreu um erro, participante não foi editado");
@@ -155,8 +156,8 @@ public class BeanParticipanteCRUD implements Serializable {
 				Gson gson = new Gson();
 				String json = gson.toJson(participante);
 				pathService.request().post(Entity.json(json));
-				Messages.addGlobalInfo("Participante: " + participante.getNome() + " salvo(a) com sucesso!");
-				participante = new Participante();
+				Messages.addGlobalInfo("ExemploDomain: " + participante.getNome() + " salvo(a) com sucesso!");
+				participante = new ExemploDomain();
 				listar();
 			} catch (Exception e) {
 				Messages.addGlobalError("Ocorreu um erro, participante não foi adicionado");
@@ -165,68 +166,68 @@ public class BeanParticipanteCRUD implements Serializable {
 
 	}
 
-	public Participante getParticipante() {
+	public ExemploDomain getParticipante() {
 		return participante;
 	}
 
-	public void setParticipante(Participante participante) {
-		this.participante = participante;
-	}
-
-	public List<Participante> getParticipantes() {
+	public List<ExemploDomain> getParticipantes() {
 		return participantes;
 	}
 
-	public void setParticipantes(List<Participante> participantes) {
-		this.participantes = participantes;
+	public List<ExemploDomain> getParticipantesFiltrados() {
+		return participantesFiltrados;
 	}
 
 	public EnumOperacoesCRUD getOperacao() {
 		return operacao;
 	}
 
-	public void setOperacao(EnumOperacoesCRUD operacao) {
-		this.operacao = operacao;
-	}
-
 	public List<SelectItem> getListaAreasInteresse() {
 		return listaAreasInteresse;
-	}
-
-	public void setListaAreasInteresse(List<SelectItem> listaAreasInteresse) {
-		this.listaAreasInteresse = listaAreasInteresse;
-	}
-
-	public String getAreaInteresse() {
-		return areaInteresse;
-	}
-
-	public void setAreaInteresse(String areaInteresse) {
-		this.areaInteresse = areaInteresse;
 	}
 
 	public List<SelectItem> getListaPeriodos() {
 		return listaPeriodos;
 	}
 
-	public void setListaPeriodos(List<SelectItem> listaPeriodos) {
-		this.listaPeriodos = listaPeriodos;
-	}
-
 	public List<SelectItem> getListaDeCursos() {
 		return listaDeCursos;
 	}
 
-	public List<Participante> getParticipantesFiltrados() {
-		return participantesFiltrados;
+	public String getAreaInteresse() {
+		return areaInteresse;
 	}
 
-	public void setParticipantesFiltrados(List<Participante> participantesFiltrados) {
+	public void setParticipante(ExemploDomain participante) {
+		this.participante = participante;
+	}
+
+	public void setParticipantes(List<ExemploDomain> participantes) {
+		this.participantes = participantes;
+	}
+
+	public void setParticipantesFiltrados(List<ExemploDomain> participantesFiltrados) {
 		this.participantesFiltrados = participantesFiltrados;
+	}
+
+	public void setOperacao(EnumOperacoesCRUD operacao) {
+		this.operacao = operacao;
+	}
+
+	public void setListaAreasInteresse(List<SelectItem> listaAreasInteresse) {
+		this.listaAreasInteresse = listaAreasInteresse;
+	}
+
+	public void setListaPeriodos(List<SelectItem> listaPeriodos) {
+		this.listaPeriodos = listaPeriodos;
 	}
 
 	public void setListaDeCursos(List<SelectItem> listaDeCursos) {
 		this.listaDeCursos = listaDeCursos;
+	}
+
+	public void setAreaInteresse(String areaInteresse) {
+		this.areaInteresse = areaInteresse;
 	}
 
 }

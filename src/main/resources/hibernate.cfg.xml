@@ -9,7 +9,7 @@
 		
 		<property name="connection.url">jdbc:postgresql://127.0.0.1:5432/sigelar</property>
 		<property name="connection.username">postgres</property>
-		<property name="connection.password">shinigami</property>
+		<property name="connection.password">sigelar123</property>
 		
 		<!-- JDBC connection pool (use the built-in) - Sessões ao mesmo tempo -->
 		<property name="connection.pool_size">1</property>
@@ -39,15 +39,17 @@
 		
 		<!-- Mapeamento de Entidades -->
 		
-		<mapping class="br.edu.facisa.sigelar.domain.Usuario" />
-		<mapping class="br.edu.facisa.sigelar.domain.RegraAcesso" />
-		<mapping class="br.edu.facisa.sigelar.domain.Hospital" />
-		<mapping class="br.edu.facisa.sigelar.domain.Pessoa" />
-		<mapping class="br.edu.facisa.sigelar.domain.Medico" />
 		<mapping class="br.edu.facisa.sigelar.domain.Almoxarifado" />
-		<mapping class="br.edu.facisa.sigelar.domain.Produtos" />
-		<mapping class="br.edu.facisa.sigelar.domain.PrescricaoMedica" />
+		<mapping class="br.edu.facisa.sigelar.domain.Consulta" />
+		<mapping class="br.edu.facisa.sigelar.domain.Funcionario" />
+		<mapping class="br.edu.facisa.sigelar.domain.Hospital" />
+		<mapping class="br.edu.facisa.sigelar.domain.Medico" />
 		<mapping class="br.edu.facisa.sigelar.domain.Paciente" />
+		<mapping class="br.edu.facisa.sigelar.domain.Pessoa" />
+		<mapping class="br.edu.facisa.sigelar.domain.PrescricaoMedica" />
+		<mapping class="br.edu.facisa.sigelar.domain.Produto" />
+		<mapping class="br.edu.facisa.sigelar.domain.RegraAcesso" />
+		<mapping class="br.edu.facisa.sigelar.domain.Usuario" />
 		
 		
 	

@@ -12,18 +12,18 @@ import javax.ws.rs.PathParam;
 
 import com.google.gson.Gson;
 
-import br.edu.facisa.sigelar.dao.ParticipanteDAO;
-import br.edu.facisa.sigelar.domain.Participante;
+import br.edu.facisa.sigelar.dao.ExemploDomainDAO;
+import br.edu.facisa.sigelar.domain.ExemploDomain;
 
 @Path("participante")
-public class ParticipanteService implements Serializable {
+public class ExemploService implements Serializable {
 
 	private static final long serialVersionUID = 1403220352301748312L;
 
 	@GET
 	public String listar() {
-		ParticipanteDAO participanteDAO = new ParticipanteDAO();
-		List<Participante> participantes = participanteDAO.listar("nome");
+		ExemploDomainDAO participanteDAO = new ExemploDomainDAO();
+		List<ExemploDomain> participantes = participanteDAO.listar("nome");
 
 		Gson gson = new Gson();
 		String json = gson.toJson(participantes);
@@ -34,8 +34,8 @@ public class ParticipanteService implements Serializable {
 	@GET
 	@Path("{id}")
 	public String buscar(@PathParam("id") Long id) {
-		ParticipanteDAO participanteDAO = new ParticipanteDAO();
-		Participante participante = participanteDAO.buscar(id);
+		ExemploDomainDAO participanteDAO = new ExemploDomainDAO();
+		ExemploDomain participante = participanteDAO.buscar(id);
 
 		Gson gson = new Gson();
 		String json = gson.toJson(participante);
@@ -46,8 +46,8 @@ public class ParticipanteService implements Serializable {
 	@POST
 	public String salvar(String json) {
 		Gson gson = new Gson();
-		Participante participante = gson.fromJson(json, Participante.class);
-		ParticipanteDAO participanteDAO = new ParticipanteDAO();
+		ExemploDomain participante = gson.fromJson(json, ExemploDomain.class);
+		ExemploDomainDAO participanteDAO = new ExemploDomainDAO();
 		participanteDAO.salvar(participante);
 		return json;
 	}
@@ -55,8 +55,8 @@ public class ParticipanteService implements Serializable {
 	@PUT
 	public String editar(String json) {
 		Gson gson = new Gson();
-		Participante participante = gson.fromJson(json, Participante.class);
-		ParticipanteDAO participanteDAO = new ParticipanteDAO();
+		ExemploDomain participante = gson.fromJson(json, ExemploDomain.class);
+		ExemploDomainDAO participanteDAO = new ExemploDomainDAO();
 		participanteDAO.editar(participante);
 		return json;
 	}
@@ -66,8 +66,8 @@ public class ParticipanteService implements Serializable {
 	public String excluir(@PathParam("codigo") Long codigo) {
 		Gson gson = new Gson();
 		System.out.println("Cheguei");
-		ParticipanteDAO participanteDAO = new ParticipanteDAO();
-		Participante participante = participanteDAO.buscar(codigo);
+		ExemploDomainDAO participanteDAO = new ExemploDomainDAO();
+		ExemploDomain participante = participanteDAO.buscar(codigo);
 		participanteDAO.excluir(participante);
 		String json = gson.toJson(participante);
 		return json;
