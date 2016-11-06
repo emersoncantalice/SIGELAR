@@ -13,37 +13,32 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "produtos")
-public class Produto implements Serializable{
+public class Produto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id_produto" ,unique = true)
+	@Column(name = "id_produto", unique = true)
 	private Long id;
 
-	
 	@ManyToOne
 	@JoinColumn(name = "id_almoxarifado")
 	private Almoxarifado almoxarifado;
-	
-	@Column(name ="codigo_produto", length = 20, nullable = false, unique = true)
+
+	@Column(name = "codigo_produto", length = 20, nullable = false, unique = true)
 	private String codigoProduto;
-	
-	@Column(name ="quantidade", nullable = false)
+
+	@Column(name = "quantidade", nullable = false)
 	private int quantidade;
-	
-	@Column(name ="referencia", length = 50, nullable = false, unique = true)
-	private String referencia;
-	
-	@Column(name ="nome", length = 100, nullable = false, unique = true)
+
+	@Column(name = "nome", length = 100, nullable = false, unique = true)
 	private String nome;
 
 	public Produto(Almoxarifado almoxarifado, String codigoProduto, int quantidade, String referencia, String nome) {
 		this.almoxarifado = almoxarifado;
 		this.codigoProduto = codigoProduto;
 		this.quantidade = quantidade;
-		this.referencia = referencia;
 		this.nome = nome;
 	}
 
@@ -71,14 +66,6 @@ public class Produto implements Serializable{
 		this.quantidade = quantidade;
 	}
 
-	public String getReferencia() {
-		return referencia;
-	}
-
-	public void setReferencia(String referencia) {
-		this.referencia = referencia;
-	}
-
 	public String getNome() {
 		return nome;
 	}
@@ -86,5 +73,5 @@ public class Produto implements Serializable{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
+
 }

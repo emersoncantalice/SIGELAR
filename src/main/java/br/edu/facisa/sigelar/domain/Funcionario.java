@@ -15,9 +15,6 @@ public class Funcionario extends Pessoa {
 
 	private static final long serialVersionUID = 2361272429411761361L;
 
-	@Column(length = 300, nullable = false)
-	private String nome;
-
 	@Column(nullable = false)
 	private double salario;
 
@@ -33,10 +30,6 @@ public class Funcionario extends Pessoa {
 	@OneToOne(cascade = CascadeType.ALL, optional = true, fetch = FetchType.EAGER, orphanRemoval = true)
 	@PrimaryKeyJoinColumn
 	private Usuario Usuario;
-
-	public String getNome() {
-		return nome;
-	}
 
 	public double getSalario() {
 		return salario;
@@ -56,10 +49,6 @@ public class Funcionario extends Pessoa {
 
 	public Usuario getUsuario() {
 		return Usuario;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
 	}
 
 	public void setSalario(double salario) {

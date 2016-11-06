@@ -8,15 +8,14 @@
 	template="/templates/Layout.xhtml">
 
 	<ui:define name="conteudo">
-		<p:panel header="FUNCIONÁRIOS">
+		<p:panel header="HOSPITAIS">
 			<h:form id="formMensagem">
 				<p:messages id="mensagem" closable="true" />
 			</h:form>
 			<h:form id="formListagem">
 				<p:dataTable id="tableListagem" paginator="true"
-					widgetVar="tableListagem"
-					value="#{beanFuncionarioCRUD.funcionarios}" var="funcionario"
-					emptyMessage="Nenhum registro encontrado." rows="8">
+					widgetVar="tableListagem" value="#{beanHospitalCRUD.hospitais}"
+					var="hospital" emptyMessage="Nenhum registro encontrado." rows="8">
 					<f:facet name="header">
 						<p:outputPanel>
 							<p:outputLabel for="globalFilter" value="Pesquisar: " />
@@ -25,38 +24,36 @@
 						</p:outputPanel>
 					</f:facet>
 
-					<p:column headerText="Nome" sortBy="#{funcionario.pessoa.nome}">
-						<h:outputText value="#{funcionario.pessoa.nome}">
+					<p:column headerText="Nome" sortBy="#{hospital.nome}">
+						<h:outputText value="#{hospital.pessoa.nome}">
 						</h:outputText>
 					</p:column>
 
-					<p:column headerText="Data de Admissão"
-						sortBy="#{funcionario.pessoa.nome}">
-						<h:outputText value="#{funcionario.dataAdmissao}">
-							<f:convertDateTime locale="pt_BR" />
-						</h:outputText>
+					<p:column headerText="CNPJ"
+						sortBy="#{hospital.cnpj}">
+						<h:outputText value="#{hospital.pessoa.planoDeSaude}" />
 					</p:column>
-
-					<p:column headerText="Nº Carteira Trabalho"
-						sortBy="#{funcionario.pessoa.nome}">
-						<h:outputText value="#{funcionario.carteiraDeTrabalho}" />
+					
+					<p:column headerText="Telefone"
+						sortBy="#{hospital.telefone}">
+						<h:outputText value="#{hospital.telefone}" />
 					</p:column>
 
 					<p:column headerText="Opções">
 						<p:panelGrid columns="4">
 							<p:commandLink value="Alterar"
-								actionListener="#{beanFuncionarioCRUD.editar}">
-								<f:attribute name="selecionadoCorrente" value="#{funcionario}" />
+								actionListener="#{beanHospitalCRUD.editar}">
+								<f:attribute name="selecionadoCorrente" value="#{hospital}" />
 							</p:commandLink>
 
 							<p:commandLink value="Excluir"
-								actionListener="#{beanFuncionarioCRUD.excluir}"
+								actionListener="#{beanHospitalCRUD.excluir}"
 								update=":formMensagem:mensagem, :formListagem:tableListagem">
 
 								<p:confirm header="Confirmação"
-									message="Deseja realmente excluir esta pessoa #{funcionario.nome}?"
+									message="Deseja realmente excluir esta pessoa #{hospital.nome}?"
 									icon="ui-icon-alert" />
-								<f:attribute name="selecionadoCorrente" value="#{funcionario}" />
+								<f:attribute name="selecionadoCorrente" value="#{hospital}" />
 							</p:commandLink>
 
 							<p:commandLink value="Visualizar" disabled="true" />
@@ -65,7 +62,7 @@
 
 					</p:column>
 					<f:facet name="footer">
-						<a href="/SIGELAR/pages/funcionario/funcionarioCadastro.xhtml"
+						<a href="/SIGELAR/pages/hospital/hospitalCadastro.xhtml"
 							class="btn"><i></i>CRIAR</a>
 					</f:facet>
 				</p:dataTable>
@@ -81,5 +78,4 @@
 		</h:form>
 
 	</ui:define>
-
 </ui:composition>

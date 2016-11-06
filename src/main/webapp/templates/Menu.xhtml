@@ -37,31 +37,36 @@
 			<p:panelMenu>
 				<sec:authorize ifAnyGranted="ROLE_ADMIN, ROLE_GER">
 					<p:submenu label="DashBoard">
-						<p:menuitem value="Gráficos" url="/dashboard/DashBoard.xhtml" icon="ui-icon-bookmark"/>
+						<p:menuitem value="Gráficos" url="/dashboard/DashBoard.xhtml"
+							icon="ui-icon-bookmark" />
 					</p:submenu>
 				</sec:authorize>
 
 				<p:submenu label="CADASTROS">
-					<p:menuitem value="Cliente" url="#" icon="ui-icon-note" />
+					<p:menuitem value="Pacientes"
+						url="/pages/paciente/pacienteCRUD.xhtml" icon="ui-icon-person" />
 					<p:menuitem value="Funcionario"
 						url="/pages/funcionario/funcionarioCRUD.xhtml"
 						icon="ui-icon-suitcase" />
-					<p:menuitem value="Hospital" url="#" icon="ui-icon-plusthick" />
-					<p:menuitem value="Paciente" url="#" icon="ui-icon-person" />
-					<p:menuitem value="Produtos" url="#" icon=" ui-icon-cart" />
+					<p:menuitem value="Hospital"
+						url="/pages/hospital/hospitalCRUD.xhtml" icon="ui-icon-plusthick" />
+					<p:menuitem value="Produtos" 
+						url="/pages/produto/produtoCRUD.xhtml" icon=" ui-icon-cart" />
 				</p:submenu>
-				
+
 				<p:submenu label="EMITIR RECEITAS">
 					<p:menuitem value="Emitir" url="#" icon="ui-icon-document" />
 				</p:submenu>
-				
+
 				<p:submenu label="MARCAR CONSULTA">
 					<p:menuitem value="Marcar" url="#" icon="ui-icon-clipboard" />
 				</p:submenu>
-				
+
 				<p:submenu label="ALMAXERIFADO">
-					<p:menuitem value="Solicitar" url="#" icon="ui-icon-arrowreturnthick-1-e" />
-					<p:menuitem value="Liberar" url="#" icon="ui-icon-arrowreturnthick-1-s" />
+					<p:menuitem value="Solicitar" url="#"
+						icon="ui-icon-arrowreturnthick-1-e" />
+					<p:menuitem value="Liberar" url="#"
+						icon="ui-icon-arrowreturnthick-1-s" />
 				</p:submenu>
 
 				<p:submenu label="CONFIGURAÇÕES">

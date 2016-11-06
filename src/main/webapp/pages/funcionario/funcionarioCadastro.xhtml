@@ -17,17 +17,32 @@
 				<h:panelGrid columns="2">
 
 					<p:outputLabel for="nome" value="Nome:" />
-					<p:inputText value="#" required="true" id="nome"
+					<p:inputText value="#{beanFuncionarioCRUD.funcionario.name}"
+						required="true" id="nome"
 						requiredMessage="O campo 'nome' é um campo obrigatório" size="30"
 						maxlength="20"></p:inputText>
+
+					<p:outputLabel for="tel" value="Telefone:" />
+					<p:inputMask mask="(99)99999-9999" maxlength="15" id="tel"
+						value="#{beanFuncionarioCRUD.funcionario.telefone}" />
+
+					<p:outputLabel for="cpf" value="CPF:" />
+					<p:inputMask mask="999.999.999-99" size="15" id="cpf"
+						value="#{beanFuncionarioCRUD.funcionario.cpf}" required="true"
+						requiredMessage="O campo cpf é um campo obrigatório" />
 
 					<p:outputLabel for="cadastro" value="Admitido em:" />
 					<p:calendar maxlength="8" id="cadastro" effect="fade"
 						title="SELECIONE"
 						value="#{beanFuncionarioCRUD.funcionario.dataAdmissao}"
 						required="true"
-						requiredMessage="O campo Número é um campo obrigatório"
+						requiredMessage="O campo 'Admitido em' é um campo obrigatório"
 						locale="pt_BR" />
+
+					<p:outputLabel value="Salario:" />
+					<p:inputMask value="R$ " mask="99999,99" size="60" maxlength="8"
+						required="true"
+						requiredMessage="O campo 'nome' é um campo obrigatório" />
 
 					<p:outputLabel for="ct" value="Carteira de trabalho" />
 					<p:inputText
@@ -60,8 +75,7 @@
 
 				<h:panelGrid columns="2" id="dadosUsuario">
 
-					<p:outputLabel id="usuario" for="user"
-						value="Usuário:"
+					<p:outputLabel id="usuario" for="user" value="Usuário:"
 						rendered="#{beanParticipanteCRUD.EalunoFacisa()}" />
 					<p:inputText id="user" size="15" maxlength="10"
 						rendered="#{beanParticipanteCRUD.EalunoFacisa()}"
@@ -69,23 +83,23 @@
 						required="true"
 						requiredMessage="O campo 'usuário' é um campo obrigatório" />
 
-					<p:outputLabel id="senha" for="senhaO"
-						value="Senha:"
+					<p:outputLabel id="senha" for="senhaO" value="Senha:"
 						rendered="#{beanParticipanteCRUD.EalunoFacisa()}" />
 					<p:inputText id="senhaO" size="15" maxlength="10"
 						rendered="#{beanParticipanteCRUD.EalunoFacisa()}"
 						value="#{beanParticipanteCRUD.participante.matricula}"
 						required="true"
 						requiredMessage="O campo 'senha' é um campo obrigatório" />
-						
-					<p:outputLabel id="email" for="em"
-						value="Email:"
+
+					<p:outputLabel for="email" value="Email:"
 						rendered="#{beanParticipanteCRUD.EalunoFacisa()}" />
-					<p:inputText id="em" size="50" maxlength="50"
-						rendered="#{beanParticipanteCRUD.EalunoFacisa()}"
-						value="#{beanParticipanteCRUD.participante.matricula}"
-						required="true"
-						requiredMessage="O campo 'email' é um campo obrigatório" />
+					<p:inputText rendered="#{beanParticipanteCRUD.EalunoFacisa()}"
+						size="50" maxlength="50" id="email" disabled="true"
+						value="#{beanParticipanteCRUD.participante.email}" required="true"
+						requiredMessage="O campo 'Email' é um campo obrigatório"
+						validatorMessage="O campo 'Email' não é valido">
+						<f:validator validatorId="custom.emailValidator" />
+					</p:inputText>
 
 				</h:panelGrid>
 
@@ -97,5 +111,26 @@
 				</h:panelGrid>
 			</h:form>
 		</p:panel>
+
+		<script type="text/javascript">
+	    /**
+	     * Faces Validator
+	     */
+	    PrimeFaces.validator['custom.emailValidator'] = {
+	 
+	        pattern: /\S+@\S+/,
+	 
+	        validate: function(element, value) {
+	            //use element.data() to access validation metadata, in this case there is none.
+	            if(!this.pattern.test(value)) {
+	                throw {
+	                    summary: 'Validation Error',
+	                    detail: value + ' is not a valid email.'
+	                }
+	            }
+	        }
+	    };
+		</script>
+
 	</ui:define>
 </ui:composition>

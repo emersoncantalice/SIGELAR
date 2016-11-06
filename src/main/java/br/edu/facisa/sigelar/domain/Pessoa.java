@@ -18,26 +18,35 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "pessoas")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Pessoa implements Serializable{
+public abstract class Pessoa implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_pessoa")
 	private Long id;
-	
-	@OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER, orphanRemoval = true )
+
+	@OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER, orphanRemoval = true)
 	@PrimaryKeyJoinColumn
 	private Hospital hospital;
-	
-	@Column(name ="nome", length = 100, nullable = false)
-	private String nome;
-	
-	@Column(name ="cpf", length = 11, nullable = false)
-	private String cpf;
-	
 
+	@Column(name = "nome", length = 100, nullable = false)
+	private String nome;
+
+	@Column(name = "cpf", length = 11, nullable = false)
+	private String cpf;
+
+	@Column(name = "telefone", length = 11)
+	private String telefone;
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
 
 	public String getNome() {
 		return nome;
@@ -62,6 +71,5 @@ public abstract class Pessoa implements Serializable{
 	public void setHospital(Hospital hospital) {
 		this.hospital = hospital;
 	}
-	
 
 }
