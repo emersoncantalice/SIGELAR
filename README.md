@@ -5,13 +5,13 @@ Sistema de Gestão Hospitalar é uma projeto que surgiu para suprir as necessida
 #____________________________________________________________
 
 # Serão usados:
-JSF 2
-Javascript
-Maven
-Hibernate
-Spring Security
-PostgreSQL como base de dados
-Primefaces
+JSF 2,
+Javascript,
+Maven,
+Hibernate,
+Spring Security,
+PostgreSQL como base de dados,
+Primefaces,
 Entre outros frameworks.
 
 #______________________________________________________________
@@ -38,10 +38,10 @@ https://github.com/emersoncantalice/SIGELAR/blob/master/Banco%20de%20Dados/Carga
 Clone repositorio.
 https://github.com/emersoncantalice/SIGELAR.git
 
-Após subir a aplicaão no tomcat a mesma ficará dispovel heim:
-http:\\localhost\SIGELAR\
+Após subir a aplicação no tomcat a mesma ficará dispovel heim.
+http://localhost/SIGELAR/
 
 #______________________________________________________________
 
-Projeto de:
-Émerson Cantalice e Doglas Lima
+*Projeto de:
+*Émerson Cantalice e Doglas Lima
