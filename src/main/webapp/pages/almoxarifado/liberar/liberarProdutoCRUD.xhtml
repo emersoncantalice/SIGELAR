@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	template="/templates/Layout.xhtml">
+
+	<ui:define name="conteudo">
+		<p:panel header="SOLICITAÇÕES">
+			<h:form id="formMensagem">
+				<p:messages id="mensagem" closable="true" />
+			</h:form>
+			<h:form id="formListagem">
+				<p:dataTable id="tableListagem" paginator="true"
+					widgetVar="tableListagem" value="#{beanPacienteCRUD.pacientes}"
+					var="paciente" emptyMessage="Nenhum registro encontrado." rows="8">
+					<f:facet name="header">
+						<p:outputPanel>
+							<p:outputLabel for="globalFilter" value="Pesquisar: " />
+							<p:inputText id="globalFilter"
+								onkeyup="PF('tableListagem').filter()" />
+						</p:outputPanel>
+					</f:facet>
+
+					<p:column headerText="Produto" sortBy="#{paciente.pessoa.nome}">
+						<h:outputText value="#{paciente.pessoa.nome}">
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="Usuário" sortBy="#{paciente.pessoa.nome}">
+						<h:outputText value="#{paciente.pessoa.planoDeSaude}" />
+					</p:column>
+
+					<p:column headerText="Quantidade" sortBy="#{paciente.pessoa.idade}">
+						<h:outputText value="#{paciente.pessoa.idade}" />
+					</p:column>
+
+					<p:column headerText="Situação" sortBy="#{paciente.pessoa.idade}">
+						<h:outputText value="#{paciente.pessoa.idade}" />
+					</p:column>
+
+					<p:column headerText="Opções">
+						<p:panelGrid columns="4">
+							<p:commandLink value="Examinar"
+								actionListener="#{beanPacienteCRUD.examinar}">
+								<f:attribute name="selecionadoCorrente" value="#{paciente}" />
+							</p:commandLink>
+
+							<p:commandLink value="Excluir"
+								actionListener="#{beanPacienteCRUD.excluir}"
+								update=":formMensagem:mensagem, :formListagem:tableListagem">
+
+								<p:confirm header="Confirmação"
+									message="Deseja realmente excluir esta pessoa #{paciente.nome}?"
+									icon="ui-icon-alert" />
+								<f:attribute name="selecionadoCorrente" value="#{paciente}" />
+							</p:commandLink>
+
+							<p:commandLink value="Visualizar" disabled="true" />
+
+						</p:panelGrid>
+
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</p:panel>
+
+		<p:panel header="ESTOQUE">
+			<h:form id="formMensagemP">
+				<p:messages id="mensagemP" closable="true" />
+			</h:form>
+			<h:form id="formListagemP">
+				<p:dataTable id="tableListagemP" paginator="true"
+					widgetVar="tableListagemP" value="#{beanProdutoCRUD.produtos}"
+					var="produto" emptyMessage="Nenhum registro encontrado." rows="8">
+					<f:facet name="header">
+						<p:outputPanel>
+							<p:outputLabel for="globalFilter" value="Pesquisar: " />
+							<p:inputText id="globalFilter"
+								onkeyup="PF('tableListagemP').filter()" />
+						</p:outputPanel>
+					</f:facet>
+
+					<p:column headerText="Nome" sortBy="#{produto.nome}">
+						<h:outputText value="#{produto.nome}">
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="Codigo" sortBy="#{produto.codigo}">
+						<h:outputText value="#{produto.codigo}" />
+					</p:column>
+
+					<p:column headerText="Quantidade" sortBy="#{produto.produto.nome}">
+						<h:outputText value="#{produto.planoDeSaude}" />
+					</p:column>
+
+					<p:column headerText="Opções">
+						<p:panelGrid columns="4">
+							<p:commandLink value="Alterar"
+								actionListener="#{beanProdutoCRUD.editar}">
+								<f:attribute name="selecionadoCorrente" value="#{produto}" />
+							</p:commandLink>
+
+							<p:commandLink value="Excluir"
+								actionListener="#{beanProdutoCRUD.excluir}"
+								update=":formMensagemP:mensagemP, :formListagemP:tableListagemP">
+
+								<p:confirm header="Confirmação"
+									message="Deseja realmente excluir este produto #{produto.nome}?"
+									icon="ui-icon-alert" />
+								<f:attribute name="selecionadoCorrente" value="#{produto}" />
+							</p:commandLink>
+
+							<p:commandLink value="Visualizar" disabled="true" />
+
+						</p:panelGrid>
+
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</p:panel>
+
+
+		<h:form>
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Sim" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="Não" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
+		</h:form>
+
+	</ui:define>
+</ui:composition>

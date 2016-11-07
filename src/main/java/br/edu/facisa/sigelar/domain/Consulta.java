@@ -24,12 +24,12 @@ public class Consulta implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_usuario")
+	@Column(name = "id_consulta")
 	private Long id;
 
 	@Column(name = "data_consulta", nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataAcessoAtual;
+	private Date dataConsulta;
 
 	@OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER, orphanRemoval = true)
 	@PrimaryKeyJoinColumn
@@ -42,5 +42,14 @@ public class Consulta implements Serializable {
 	@OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER, orphanRemoval = true)
 	@PrimaryKeyJoinColumn
 	private PrescricaoMedica prescricao;
+	
+	@Column(nullable = true)
+	private String sala;
+
+	@Column(nullable = true)
+	private String local;
+
+	@Column(nullable = false)
+	private String queixa;
 
 }
