@@ -1,5 +1,5 @@
 
-create tadabase SIGELAR;
+create database SIGELAR;
 
     create table Funcionario (
         dataAcessoAtual timestamp not null,
