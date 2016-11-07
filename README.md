@@ -1,6 +1,6 @@
 # SIGELAR
 
-Sistema de Gestão Hospitalar é uma projeto que surgiu para suprir as necessidades das disciplinas de Lab. de Sistemas de Informação, Lab. de Banco de dados e Métodos avançados de programação. Ministradas no quinto período do curso de Sistemas de Informação da Facisa - Campina Grande/PB
+Sistema de Gestão Hospitalar é uma projeto que surgiu para suprir as necessidades da disciplina de Lab. de Sistemas de Informação. Ministradas no quinto período do curso de Sistemas de Informação da Facisa - Campina Grande/PB 2016.2
 
 #____________________________________________________________
 
