@@ -13,73 +13,77 @@
 				<p:messages id="mensagem" closable="true" />
 			</h:form>
 			<h:form id="formCadastro">
-				<p:messages id="mensagemCadastro" />
 				<h:panelGrid columns="2">
 
 					<p:outputLabel for="nome" value="Nome:" />
-					<p:inputText value="#{beanHospitalCRUD.hospital.name}"
+					<p:inputText value="#{beanHospitalCadastro.hospital.nome}"
 						required="true" id="nome"
 						requiredMessage="O campo 'nome' é um campo obrigatório" size="30"
 						maxlength="20"></p:inputText>
 
 					<p:outputLabel for="nomef" value="Nome Fantasia:" />
-					<p:inputText value="#{beanHospitalCRUD.hospital.nameFantasia}"
+					<p:inputText value="#{beanHospitalCadastro.hospital.nomeFantasia}"
 						required="true" id="nomef"
-						requiredMessage="O campo 'nome' é um campo obrigatório" size="30"
-						maxlength="20"></p:inputText>
+						requiredMessage="O campo 'Nome Fantasia' é um campo obrigatório"
+						size="30" maxlength="20"></p:inputText>
 
 					<p:outputLabel for="cnpj" value="CNPJ:" />
-					<p:inputMask mask="99999999-9" size="18" id="cnpj"
-						value="#{beanHospitalCRUD.hospital.cpf}" required="true"
+					<p:inputMask mask="99.999.999/9999-99" size="18" id="cnpj"
+						value="#{beanHospitalCadastro.hospital.cnpj}" required="true"
 						requiredMessage="O campo cnpj é um campo obrigatório" />
 
 					<p:outputLabel for="ie" value="Inscrição Estadual" />
-					<p:inputMask mask="99.999.999/9999-99" size="18" id="ie"
-						value="#{beanHospitalCRUD.hospital.cpf}" required="true"
-						requiredMessage="O campo cnpj é um campo obrigatório" />
+					<p:inputMask mask="99999999-9" size="18" id="ie"
+						value="#{beanHospitalCadastro.hospital.inscricaoEstadual}"
+						required="true"
+						requiredMessage="O campo Inscrição Estadual é um campo obrigatório" />
 
 					<p:outputLabel for="tel" value="Telefone:" />
 					<p:inputMask mask="(99)99999-9999" maxlength="15" id="tel"
-						value="#{beanHospitalCRUD.hospital.telefone}" />
+						value="#{beanHospitalCadastro.hospital.telefone}" />
 
 					<p:outputLabel for="site" value="Site:" />
 					<p:inputText size="50" maxlength="50" id="site"
-						value="#{beanParticipanteCRUD.participante.site}" />
-						
+						value="#{beanHospitalCadastro.hospital.site}" />
+
 					<p:outputLabel for="end" value="Endereço:" />
 
 					<p:panel id="end">
 
 						<h:panelGrid columns="4">
 							<p:outputLabel for="estado" value="Estado" />
-							<p:selectOneMenu id="estado" maxlength="30"
+							<p:selectOneMenu id="estado" maxlength="30" required="true"
 								converter="omnifaces.SelectItemsConverter"
-								value="#{beanPessoaCRUD.estado}">
+								value="#{beanHospitalCadastro.estado}"
+								requiredMessage="O campo Cidade é um campo obrigatório">>
 								<f:selectItem noSelectionOption="true" itemLabel="SELECIONE" />
-								<f:selectItems value="#{beanPessoaCRUD.estados}" var="estado"
-									itemValue="#{estado}" itemLabel="#{estado.nome}" />
-								<p:ajax listener="#{beanPessoaCRUD.popularEstados()}"
-									update=":formCadastro:cidade" />
+								<f:selectItems value="#{beanHospitalCadastro.estados}"
+									var="estado" itemValue="#{estado}" itemLabel="#{estado}" />
+								<p:ajax listener="#{beanHospitalCadastro.popularCidades}"
+									update=":formCadastro:cidade">
+								</p:ajax>
 							</p:selectOneMenu>
 
 							<p:outputLabel for="cidade" value="Cidade:" />
 							<p:selectOneMenu id="cidade" maxlength="30"
-								value="#{beanPessoaCRUD.pessoa.cidade}"
-								converter="omnifaces.SelectItemsConverter" required="true"
+								converter="omnifaces.SelectItemsConverter"
+								value="#{beanHospitalCadastro.cidade}" required="true"
 								requiredMessage="O campo Cidade é um campo obrigatório">
 								<f:selectItem itemLabel="SELECIONE" />
-								<f:selectItems value="#{beanPessoaCRUD.cidades}" var="cidade"
-									itemValue="#{cidade}" itemLabel="#{cidade.nome}" />
+								<f:selectItems value="#{beanHospitalCadastro.cidades}"
+									var="cidade" itemValue="#{cidade}" itemLabel="#{cidade}" />
+								<p:ajax listener="#{beanHospitalCadastro.popularBairros}"
+									update=":formCadastro:bairro" />
 							</p:selectOneMenu>
 
 							<p:outputLabel for="bairro" value="Bairro:" />
 							<p:selectOneMenu id="bairro" maxlength="30"
-								value="#{beanPessoaCRUD.pessoa.cidade}"
-								converter="omnifaces.SelectItemsConverter" required="true"
+								converter="omnifaces.SelectItemsConverter"
+								value="#{beanHospitalCadastro.bairro}" required="true"
 								requiredMessage="O campo Bairro é um campo obrigatório">
 								<f:selectItem itemLabel="SELECIONE" />
-								<f:selectItems value="#{beanPessoaCRUD.cidades}" var="bairro"
-									itemValue="bairro" itemLabel="#{bairro.nome}" />
+								<f:selectItems value="#{beanHospitalCadastro.bairros}"
+									var="bairro" itemValue="#{bairro}" itemLabel="#{bairro}" />
 							</p:selectOneMenu>
 
 						</h:panelGrid>
@@ -88,22 +92,22 @@
 
 							<p:outputLabel for="cep" value="CEP:" />
 							<p:inputMask mask="99999-999" size="60" maxlength="50" id="cep"
-								value="#{beanPessoaCRUD.pessoa.cep}" required="true"
+								value="#{beanHospitalCadastro.hospital.cep}" required="true"
 								requiredMessage="O campo CEP é um campo obrigatório" />
 
 							<p:outputLabel for="rua" value="Rua:" />
 							<p:inputText size="60" maxlength="50" id="rua"
-								value="#{beanPessoaCRUD.pessoa.rua}" required="true"
+								value="#{beanHospitalCadastro.hospital.rua}" required="true"
 								requiredMessage="O campo Rua é um campo obrigatório" />
 
 							<p:outputLabel for="numero" value="Número:" />
 							<p:inputText size="60" maxlength="5" id="numero"
-								value="#{beanPessoaCRUD.pessoa.numero}" required="true"
+								value="#{beanHospitalCadastro.hospital.numero}" required="true"
 								requiredMessage="O campo Número é um campo obrigatório" />
 
 							<p:outputLabel for="compl" value="Compl.:" />
 							<p:inputText size="60" maxlength="50" id="compl"
-								value="#{beanPessoaCRUD.pessoa.complemento}" />
+								value="#{beanHospitalCadastro.hospital.complemento}" />
 
 						</h:panelGrid>
 
@@ -112,9 +116,12 @@
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">
+					<p:outputLabel
+						value="Obs:. Será necessário fazer login novamente ao salvar a modificação no hospital!"></p:outputLabel>
+					<br/>
 					<p:commandButton styleClass="btn" value="Salvar"
-						actionListener="#{beanHospitalCRUD.salvar()}" />
-					<a href="/SIGELAR/pages/hospital/hospitalCRUD.xhtml" class="btn"><i></i>Voltar</a>
+						update="formMensagem:mensagem, formCadastro"
+						actionListener="#{beanHospitalCadastro.salvar()}" />
 				</h:panelGrid>
 			</h:form>
 		</p:panel>

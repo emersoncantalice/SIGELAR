@@ -16,7 +16,7 @@ public class Hospital implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_hospital", unique = true)
 	private Long id;
 
@@ -26,7 +26,7 @@ public class Hospital implements Serializable {
 	@Column(name = "nome_fantasia", length = 100, nullable = false)
 	private String nomeFantasia;
 
-	@Column(name = "cnpj", length = 15, nullable = false)
+	@Column(name = "cnpj", length = 20, nullable = false)
 	private String cnpj;
 
 	@Column(name = "inscricao_estadual", length = 15, nullable = false)
@@ -35,15 +35,18 @@ public class Hospital implements Serializable {
 	@Column(name = "bairo", length = 100, nullable = false)
 	private String bairro;
 
+	@Column(name = "estado", length = 100, nullable = false)
+	private String estado;
+
 	@Column(name = "cidade", length = 100, nullable = false)
 	private String cidade;
 
 	@Column(name = "rua", length = 100, nullable = false)
 	private String rua;
 
-	@Column(name = "numero", length = 5, nullable = false)
+	@Column(name = "numero", length = 10, nullable = false)
 	private String numero;
-	
+
 	@Column(name = "complemento", length = 50)
 	private String complemento;
 
@@ -53,8 +56,11 @@ public class Hospital implements Serializable {
 	@Column(name = "telefone", length = 15, nullable = false)
 	private String telefone;
 
-	@Column(name = "site", length = 15, nullable = false)
+	@Column(name = "site", length = 150, nullable = false)
 	private String site;
+
+	public Hospital() {
+	}
 
 	public Hospital(String nome, String nomeFantasia, String cnpj, String inscricaoEstadual, String bairro,
 			String cidade, String rua, String numero, String cep, String telefone, String site) {
@@ -166,6 +172,22 @@ public class Hospital implements Serializable {
 
 	public void setSite(String site) {
 		this.site = site;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
 	}
 
 }

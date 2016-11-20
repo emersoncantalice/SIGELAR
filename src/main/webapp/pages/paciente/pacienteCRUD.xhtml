@@ -24,13 +24,15 @@
 						</p:outputPanel>
 					</f:facet>
 
-					<p:column headerText="Nome" sortBy="#{paciente.pessoa.nome}">
+					<p:column headerText="Nome" sortBy="#{paciente.pessoa.nome}" filterBy="#{paciente.pessoa.nome}" toggleable="true"
+						filterStyle="display:none">
 						<h:outputText value="#{paciente.pessoa.nome}">
 						</h:outputText>
 					</p:column>
 
 					<p:column headerText="Plano de saude"
-						sortBy="#{paciente.pessoa.nome}">
+						sortBy="#{paciente.pessoa.nome}" filterBy="#{paciente.pessoa.nome}" toggleable="true"
+						filterStyle="display:none">
 						<h:outputText value="#{paciente.pessoa.planoDeSaude}" />
 					</p:column>
 					

@@ -24,17 +24,21 @@
 						</p:outputPanel>
 					</f:facet>
 
-					<p:column headerText="Nome" sortBy="#{produto.nome}">
+					<p:column headerText="Nome" sortBy="#{produto.nome}"
+						filterBy="#{produto.nome}" toggleable="true"
+						filterStyle="display:none">
 						<h:outputText value="#{produto.nome}">
 						</h:outputText>
 					</p:column>
 
-					<p:column headerText="Codigo" sortBy="#{produto.codigo}">
-						<h:outputText value="#{produto.codigo}" />
+					<p:column headerText="Codigo" sortBy="#{produto.codigoProduto}"
+						filterBy="#{produto.codigoProduto}" filterStyle="display:none">
+						<h:outputText value="#{produto.codigoProduto}" />
 					</p:column>
 
-					<p:column headerText="Quantidade" sortBy="#{produto.produto.nome}">
-						<h:outputText value="#{produto.planoDeSaude}" />
+					<p:column headerText="Quantidade" sortBy="#{produto.quantidade}"
+						filterBy="#{produto.quantidade}" filterStyle="display:none">
+						<h:outputText value="#{produto.quantidade}" />
 					</p:column>
 
 					<p:column headerText="Opções">
@@ -46,15 +50,13 @@
 
 							<p:commandLink value="Excluir"
 								actionListener="#{beanProdutoCRUD.excluir}"
-								update=":formMensagem:mensagem, :formListagem:tableListagem">
+								update=":formListagem:tableListagem">
 
 								<p:confirm header="Confirmação"
-									message="Deseja realmente excluir este produto #{produto.nome}?"
+									message="Deseja realmente excluir o produto #{produto.nome}?"
 									icon="ui-icon-alert" />
 								<f:attribute name="selecionadoCorrente" value="#{produto}" />
 							</p:commandLink>
-
-							<p:commandLink value="Visualizar" disabled="true" />
 
 						</p:panelGrid>
 
@@ -67,7 +69,7 @@
 		</p:panel>
 		<h:form>
 			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-				<p:commandButton value="Sim" type="button"
+				<p:commandButton value="Sim" type="button" update="@all"
 					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
 				<p:commandButton value="Não" type="button"
 					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />

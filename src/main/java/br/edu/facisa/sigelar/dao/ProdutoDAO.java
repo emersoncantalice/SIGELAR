@@ -1,6 +1,5 @@
 package br.edu.facisa.sigelar.dao;
 
-import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -9,8 +8,8 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
+import br.edu.facisa.sigelar.domain.Produto;
 import br.edu.facisa.sigelar.main.HibernateUtil;
-
 
 public class ProdutoDAO<Entidade> {
 
@@ -18,8 +17,7 @@ public class ProdutoDAO<Entidade> {
 
 	@SuppressWarnings("unchecked")
 	public ProdutoDAO() {
-		this.tipoClasse = (Class<Entidade>) ((ParameterizedType) getClass().getGenericSuperclass())
-				.getActualTypeArguments()[0];
+		this.tipoClasse = (Class<Entidade>) Produto.class;
 	}
 
 	public void salvar(Entidade entidade) {
@@ -39,8 +37,8 @@ public class ProdutoDAO<Entidade> {
 			sessao.close();
 		}
 	}
-	
-	public List<Entidade> listar(){
+
+	public List<Entidade> listar() {
 		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
 		try {
 			Criteria listagem = sessao.createCriteria(tipoClasse);
@@ -53,7 +51,7 @@ public class ProdutoDAO<Entidade> {
 			sessao.close();
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<Entidade> listar(String campoOrdenacao) {
 		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
@@ -68,8 +66,8 @@ public class ProdutoDAO<Entidade> {
 			sessao.close();
 		}
 	}
-	
-	public Entidade buscar(Long codigo){
+
+	public Entidade buscar(Long codigo) {
 		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
 		try {
 			Criteria listagem = sessao.createCriteria(tipoClasse);
@@ -83,7 +81,7 @@ public class ProdutoDAO<Entidade> {
 			sessao.close();
 		}
 	}
-	
+
 	public void excluir(Entidade entidade) {
 		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
 		Transaction transacao = null;
@@ -101,7 +99,7 @@ public class ProdutoDAO<Entidade> {
 			sessao.close();
 		}
 	}
-	
+
 	public void editar(Entidade entidade) {
 		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
 		Transaction transacao = null;
@@ -119,7 +117,7 @@ public class ProdutoDAO<Entidade> {
 			sessao.close();
 		}
 	}
-	
+
 	public void merge(Entidade entidade) {
 		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
 		Transaction transacao = null;
@@ -137,11 +135,27 @@ public class ProdutoDAO<Entidade> {
 			sessao.close();
 		}
 	}
-	
-	
 
 	public Class<Entidade> getTipoClasse() {
 		return tipoClasse;
+	}
+
+	public Produto buscar(String codigo) {
+		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
+		try {
+
+			Criteria listagem = sessao.createCriteria(Produto.class);
+			listagem.add(Restrictions.like("codigoProduto", codigo));
+			Produto produto = (Produto) listagem.uniqueResult();
+
+			return produto;
+
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			sessao.close();
+		}
+
 	}
 
 }

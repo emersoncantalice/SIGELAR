@@ -31,7 +31,7 @@
 		
 		<!-- Drop and re-create the database schema on startup - Cria as tabelas 
 			do BD -->
-		<property name="hbm2ddl.auto">create-drop</property>
+		<property name="hbm2ddl.auto">update</property>
 		
 		<property name="hibernate.show_sql">true</property>
 		
@@ -39,7 +39,6 @@
 		
 		<!-- Mapeamento de Entidades -->
 		
-		<mapping class="br.edu.facisa.sigelar.domain.Almoxarifado" />
 		<mapping class="br.edu.facisa.sigelar.domain.Consulta" />
 		<mapping class="br.edu.facisa.sigelar.domain.Funcionario" />
 		<mapping class="br.edu.facisa.sigelar.domain.Hospital" />
@@ -50,8 +49,6 @@
 		<mapping class="br.edu.facisa.sigelar.domain.Produto" />
 		<mapping class="br.edu.facisa.sigelar.domain.RegraAcesso" />
 		<mapping class="br.edu.facisa.sigelar.domain.Usuario" />
-		
-		
 	
 	</session-factory>
 </hibernate-configuration>

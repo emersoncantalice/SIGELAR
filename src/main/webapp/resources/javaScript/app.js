@@ -16,3 +16,7 @@ $(function() {
         e.stopPropagation();  // stop events from bubbling from sub menu clicks
     });
 });
+
+function clicar() {
+	document.GetElementById="modal".click()
+}

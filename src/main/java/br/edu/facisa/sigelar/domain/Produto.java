@@ -7,8 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,10 +20,6 @@ public class Produto implements Serializable {
 	@Column(name = "id_produto", unique = true)
 	private Long id;
 
-	@ManyToOne
-	@JoinColumn(name = "id_almoxarifado")
-	private Almoxarifado almoxarifado;
-
 	@Column(name = "codigo_produto", length = 20, nullable = false, unique = true)
 	private String codigoProduto;
 
@@ -35,19 +29,13 @@ public class Produto implements Serializable {
 	@Column(name = "nome", length = 100, nullable = false, unique = true)
 	private String nome;
 
-	public Produto(Almoxarifado almoxarifado, String codigoProduto, int quantidade, String referencia, String nome) {
-		this.almoxarifado = almoxarifado;
+	public Produto(String codigoProduto, int quantidade, String referencia, String nome) {
 		this.codigoProduto = codigoProduto;
 		this.quantidade = quantidade;
 		this.nome = nome;
 	}
 
-	public Almoxarifado getAlmoxarifado() {
-		return almoxarifado;
-	}
-
-	public void setAlmoxarifado(Almoxarifado almoxarifado) {
-		this.almoxarifado = almoxarifado;
+	public Produto() {
 	}
 
 	public String getCodigoProduto() {

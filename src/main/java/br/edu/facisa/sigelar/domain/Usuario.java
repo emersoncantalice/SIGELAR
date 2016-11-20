@@ -10,8 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,11 +23,6 @@ public class Usuario implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_user")
 	private Long id;
-	
-	@ManyToOne
-	@JoinColumn(name = "id_almoxarifado")
-	private Almoxarifado almoxarifado_user;
-
 	
 	@Column(length = 300, nullable = false)
 	private String nome;

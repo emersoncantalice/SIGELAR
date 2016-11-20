@@ -13,37 +13,32 @@
 				<p:messages id="mensagem" closable="true" />
 			</h:form>
 			<h:form id="formCadastro">
-				<p:messages id="mensagemCadastro" />
 				<h:panelGrid columns="2">
 
 					<p:outputLabel for="nome" value="Nome:" />
-					<p:inputText value="#{beanPacienteCRUD.paciente.name}"
+					<p:inputText value="#{beanProdutoCadastro.produto.nome}"
 						required="true" id="nome"
 						requiredMessage="O campo 'nome' é um campo obrigatório" size="30"
-						maxlength="20"></p:inputText>
+						maxlength="30"></p:inputText>
 						
 				<p:outputLabel for="cod" value="Código:" />
-					<p:inputText value="#{beanPacienteCRUD.paciente.codigo}"
+					<p:inputText value="#{beanProdutoCadastro.produto.codigoProduto}"
 						required="true" id="cod"
 						requiredMessage="O campo 'codigo' é um campo obrigatório" size="30"
 						maxlength="20"></p:inputText>
 						
 				<p:outputLabel for="quant" value="Quantidade:" />
-					<p:inputText value="#{beanPacienteCRUD.paciente.quantidade}"
+					<p:inputMask mask="9999" value="#{beanProdutoCadastro.produto.quantidade}"
 						required="true" id="quant"
 						requiredMessage="O campo 'quantidade' é um campo obrigatório" size="30"
-						maxlength="20"></p:inputText>
-
-					
-					
-
+						maxlength="20"></p:inputMask>
 
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">
-					<p:commandButton styleClass="btn" value="Salvar"
-						actionListener="#{beanPacienteCRUD.salvar()}" />
-					<a href="/SIGELAR/pages/paciente/pacienteCRUD.xhtml" class="btn"><i></i>Voltar</a>
+					<p:commandButton styleClass="btn" value="Salvar" update="formMensagem:mensagem, formCadastro"
+						actionListener="#{beanProdutoCadastro.salvar()}" />
+					<a href="/SIGELAR/pages/produto/produtoCRUD.xhtml" class="btn"><i></i>Voltar</a>
 				</h:panelGrid>
 			</h:form>
 		</p:panel>

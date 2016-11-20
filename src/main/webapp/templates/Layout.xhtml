@@ -12,7 +12,7 @@
 	</f:facet>
 
 	<title>SIGELAR - Sistema de Gestão Hospitalar</title>
-	
+
 	<link rel="shortcut icon" type="image/x-icon"
 		href="#{resource['images/icon.png']}" />
 
@@ -20,26 +20,39 @@
 	<h:outputStylesheet library="css" name="layout.css" />
 	<h:outputStylesheet library="css" name="components.css" />
 	<h:outputStylesheet library="css" name="estilo.css" />
-	<h:outputScript target="body" library="primefaces" name="jquery/jquery.js" />
+	<h:outputScript target="body" library="primefaces"
+		name="jquery/jquery.js" />
 	<h:outputScript target="body" library="javaScript" name="app.js" />
 	<h:outputStylesheet library="css" name="bootstrap-2.0.0.css" />
-	
+
 </h:head>
 
 <h:body>
 
 	<header class="aw-topbar">
 		<h:link outcome="/pages/Home.xhtml">
-			<p:graphicImage library="images" name="logo_barra_menu.png" style="padding:0.2%; margin-top:7px"/>
+			<p:graphicImage library="images" name="logo_barra_menu.png"
+				style="padding:0.2%; margin-top:7px" />
 		</h:link>
-			<a href="/pages/Home.xhtml" class="aw-toggle  js-toggle">
-			<p:graphicImage library="images" name="bt_menu.png" styleClass="imagemMenu"/>
-			</a>
+		<a href="/pages/Home.xhtml" class="aw-toggle  js-toggle"> <p:graphicImage
+				library="images" name="bt_menu.png" styleClass="imagemMenu" />
+		</a>
 	</header>
 
 	<aside class="aw-sidebar  js-sidebar">
 		<ui:include src="/templates/Menu.xhtml" />
 	</aside>
+
+	<p:dialog id="naoCadastrado" widgetVar="naoCadastrado" modal="true"
+		rendered="#{!verificadorDeCadastroDeSistema.carregaSistema}"
+		visible="true" fitViewport="true" closable="true"
+		styleClass="carregaSistema">
+		<h:form id="formMensagemCadastroSistema">
+			<p:outputLabel
+				value="O hospital ainda não foi cadastrado, algumas funções não 
+			funcionaram corretamente, contacte o administrador!"></p:outputLabel>
+		</h:form>
+	</p:dialog>
 
 	<section class="aw-content  js-content">
 		<ui:insert name="conteudo" />
