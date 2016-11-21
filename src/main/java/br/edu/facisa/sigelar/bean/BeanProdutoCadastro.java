@@ -22,7 +22,7 @@ public class BeanProdutoCadastro implements Serializable {
 	public void init() {
 		produto = new Produto();
 		String id = BeanBoxNavigation.getInstance().getId();
-		if (id != "") {
+		if (id != null && id != "") {
 			ProdutoDAO<Produto> pd = new ProdutoDAO<Produto>();
 			produto = pd.buscar(id);
 			BeanBoxNavigation.getInstance().clean();

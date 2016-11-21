@@ -48,8 +48,11 @@
 					<p:menuitem value="Funcionario"
 						url="/pages/funcionario/funcionarioCRUD.xhtml"
 						icon="ui-icon-suitcase" />
-					<p:menuitem value="Hospital"
-						url="/pages/hospital/hospitalCadastro.xhtml" icon="ui-icon-plusthick" />
+					<sec:authorize ifAnyGranted="ROLE_ADMIN">
+						<p:menuitem value="Hospital"
+							url="/pages/hospital/hospitalCadastro.xhtml"
+							icon="ui-icon-plusthick" />
+					</sec:authorize>
 					<p:menuitem value="Produtos" url="/pages/produto/produtoCRUD.xhtml"
 						icon=" ui-icon-cart" />
 				</p:submenu>
