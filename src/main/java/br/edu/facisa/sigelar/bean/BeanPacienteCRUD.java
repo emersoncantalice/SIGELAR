@@ -13,9 +13,7 @@ import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
 
 import br.edu.facisa.sigelar.dao.PacienteDAO;
-import br.edu.facisa.sigelar.dao.ProdutoDAO;
 import br.edu.facisa.sigelar.domain.Paciente;
-import br.edu.facisa.sigelar.domain.Produto;
 
 @ManagedBean
 @ViewScoped

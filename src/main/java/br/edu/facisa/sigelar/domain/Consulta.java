@@ -39,10 +39,10 @@ public class Consulta implements Serializable {
 	@PrimaryKeyJoinColumn
 	private Paciente paciente;
 
-	@OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER, orphanRemoval = true)
+	@OneToOne(cascade = CascadeType.ALL, optional = true, fetch = FetchType.EAGER, orphanRemoval = true)
 	@PrimaryKeyJoinColumn
 	private PrescricaoMedica prescricao;
-	
+
 	@Column(nullable = true)
 	private String sala;
 
@@ -51,5 +51,69 @@ public class Consulta implements Serializable {
 
 	@Column(nullable = false)
 	private String queixa;
+
+	public Long getId() {
+		return id;
+	}
+
+	public Date getDataConsulta() {
+		return dataConsulta;
+	}
+
+	public Medico getMedico() {
+		return medico;
+	}
+
+	public Paciente getPaciente() {
+		return paciente;
+	}
+
+	public PrescricaoMedica getPrescricao() {
+		return prescricao;
+	}
+
+	public String getSala() {
+		return sala;
+	}
+
+	public String getLocal() {
+		return local;
+	}
+
+	public String getQueixa() {
+		return queixa;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setDataConsulta(Date dataConsulta) {
+		this.dataConsulta = dataConsulta;
+	}
+
+	public void setMedico(Medico medico) {
+		this.medico = medico;
+	}
+
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
+	}
+
+	public void setPrescricao(PrescricaoMedica prescricao) {
+		this.prescricao = prescricao;
+	}
+
+	public void setSala(String sala) {
+		this.sala = sala;
+	}
+
+	public void setLocal(String local) {
+		this.local = local;
+	}
+
+	public void setQueixa(String queixa) {
+		this.queixa = queixa;
+	}
 
 }

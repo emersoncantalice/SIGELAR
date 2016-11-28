@@ -33,11 +33,11 @@ public class Usuario implements Serializable{
 	@Column(length = 32, nullable = false)
 	private String password;
 
-	@Column(nullable = false)
+	@Column(nullable = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataUltimoAcesso;
 
-	@Column(nullable = false)
+	@Column(nullable = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataAcessoAtual;
 
