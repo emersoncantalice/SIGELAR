@@ -13,7 +13,6 @@
 				<p:messages id="mensagem" closable="true" />
 			</h:form>
 			<h:form id="formCadastro">
-				<p:messages id="mensagemCadastro" />
 				<h:panelGrid columns="2">
 
 					<p:outputLabel for="nome" value="Nome:" />
@@ -48,6 +47,7 @@
 
 				<h:panelGrid columns="2">
 					<p:commandButton styleClass="btn" value="Salvar"
+						update="formMensagem:mensagem, formCadastro"
 						actionListener="#{beanPacienteCadastrar.salvar()}" />
 					<a href="/SIGELAR/pages/paciente/pacienteCRUD.xhtml" class="btn"><i></i>Voltar</a>
 				</h:panelGrid>

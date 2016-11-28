@@ -35,7 +35,7 @@ public class BeanPacienteCadastrar implements Serializable{
 			PacienteDAO pd = new PacienteDAO();
 			paciente.setHospital(VerificadorDeCadastroDeSistema.hospital);
 			pd.merge(paciente);
-			Messages.addGlobalInfo("Produto: " + paciente.getNome() + " cadastrado com sucesso!");
+			Messages.addGlobalInfo("Paciente: " + paciente.getNome() + " cadastrado com sucesso!");
 			paciente = new Paciente();
 		} catch (Exception e) {
 			Messages.addGlobalError("Erro ao cadastrar produto");

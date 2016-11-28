@@ -50,6 +50,7 @@ public class BeanPacienteCRUD implements Serializable {
 			PacienteDAO pd = new PacienteDAO();
 			pd.excluir(paciente);
 			Faces.redirect("./pages/paciente/pacienteCRUD.xhtml");
+			Messages.addGlobalInfo("Paciente: " + paciente.getNome() + " excluido com sucesso!");
 		} catch (IOException e) {
 			Messages.addGlobalInfo("Erro ao tentar excluir o produto");
 		}
