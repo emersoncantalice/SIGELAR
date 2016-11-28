@@ -13,7 +13,6 @@
 				<p:messages id="mensagem" closable="true" />
 			</h:form>
 			<h:form id="formCadastro">
-				<p:messages id="mensagemCadastro" />
 				<h:panelGrid columns="2">
 
 					<p:outputLabel for="nome" value="Nome:" />
@@ -41,7 +40,7 @@
 
 					<p:outputLabel value="Salario:" />
 					<p:inputMask value="#{beanFuncionarioCadastro.funcionario.salario}"
-						size="60" maxlength="8" required="true" 
+						size="60" maxlength="8" required="true"
 						requiredMessage="O campo 'nome' é um campo obrigatório" />
 
 					<p:outputLabel for="ct" value="Carteira de trabalho" />
@@ -66,7 +65,7 @@
 					<p:outputLabel value="Criar usuário de Sistema?:" />
 					<p:selectOneRadio value="#{beanFuncionarioCadastro.criaUserVar}"
 						required="true"
-						requiredMessage="O campo 'Estudante Facisa?' é um campo obrigatório">
+						requiredMessage="O campo 'Criar usuário de Sistema' é um campo obrigatório">
 						<f:selectItem itemValue="S" itemLabel="SIM" />
 						<f:selectItem itemValue="N" itemLabel="NÃO" />
 						<p:ajax listener="#{beanFuncionarioCadastro.criaUser()}"
@@ -125,7 +124,7 @@
 							<f:selectItems value="#{beanFuncionarioCadastro.regrasAcesso}" />
 						</p:selectCheckboxMenu>
 
-						<p:commandButton update=":formCadastro:mensagemCadastro display"
+						<p:commandButton update=":formMensagem:mensagem display"
 							value="Adicionar" />
 
 						<p:outputPanel id="display"
@@ -141,6 +140,7 @@
 
 				<h:panelGrid columns="2">
 					<p:commandButton styleClass="btn" value="Salvar"
+						update="formMensagem:mensagem, formCadastro"
 						actionListener="#{beanFuncionarioCadastro.salvar()}" />
 					<a href="/SIGELAR/pages/funcionario/funcionarioCRUD.xhtml"
 						class="btn"><i></i>Voltar</a>

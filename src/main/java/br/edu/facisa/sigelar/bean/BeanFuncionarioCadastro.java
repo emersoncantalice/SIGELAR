@@ -14,6 +14,7 @@ import org.omnifaces.util.Messages;
 
 import br.edu.facisa.sigelar.dao.FuncionarioDAO;
 import br.edu.facisa.sigelar.dao.MedicoDAO;
+import br.edu.facisa.sigelar.dao.RegraAcessoDAO;
 import br.edu.facisa.sigelar.dao.UsuarioDAO;
 import br.edu.facisa.sigelar.domain.Funcionario;
 import br.edu.facisa.sigelar.domain.Medico;
@@ -61,8 +62,9 @@ public class BeanFuncionarioCadastro implements Serializable {
 
 			if (FuncoesTrabalhistas.Médico.getNome().equals(funcao)) {
 				MedicoDAO md = new MedicoDAO();
-				medico = md.buscarPorNome(user.getUsername());
+				medico = md.buscarPorNome(funcionario.getNome());
 			}
+
 			BeanBoxNavigation.getInstance().clean();
 		}
 
@@ -117,6 +119,7 @@ public class BeanFuncionarioCadastro implements Serializable {
 
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void salvar() {
 
 		try {
@@ -136,16 +139,26 @@ public class BeanFuncionarioCadastro implements Serializable {
 
 			Usuario user = new Usuario();
 			UsuarioDAO ud = new UsuarioDAO();
+			RegraAcessoDAO ra = new RegraAcessoDAO();
 			user = ud.buscarPorNome(funcionario.getNome());
+
+			if (user != null) {
+				for (RegraAcesso regra : funcionario.getUsuario().getRegras()) {
+					regra.setUsuario(user);
+					ra.merge(regra);
+				}
+			}
 
 			if (medico != null && medico.getCrm() != "") {
 				MedicoDAO md = new MedicoDAO();
-				medico.setNome(user.getUsername());
+				medico.setNome(funcionario.getNome());
 				md.salvar(medico);
 			}
 
 			Messages.addGlobalInfo("Funcionario: " + funcionario.getNome() + " cadastrado com sucesso!");
 			funcionario = new Funcionario();
+			medico = new Medico();
+			user = new Usuario();
 		} catch (Exception e) {
 			Messages.addGlobalError("Erro ao cadastrar funcionario");
 		}

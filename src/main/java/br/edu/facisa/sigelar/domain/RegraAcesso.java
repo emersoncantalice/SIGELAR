@@ -1,5 +1,6 @@
 package br.edu.facisa.sigelar.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,7 +15,7 @@ public class RegraAcesso extends GenericDomain {
 	@Column(length = 15, nullable = false)
 	private String descricao;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(cascade = CascadeType.ALL, optional = true, fetch = FetchType.EAGER)
 	@JoinColumn(name = "username", nullable = false)
 	private Usuario usuario;
 
