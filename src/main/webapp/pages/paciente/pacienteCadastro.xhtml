@@ -17,28 +17,28 @@
 				<h:panelGrid columns="2">
 
 					<p:outputLabel for="nome" value="Nome:" />
-					<p:inputText value="#{beanPacienteCRUD.paciente.name}"
+					<p:inputText value="#{beanPacienteCadastrar.paciente.nome}"
 						required="true" id="nome"
 						requiredMessage="O campo 'nome' é um campo obrigatório" size="30"
 						maxlength="20"></p:inputText>
 
 					<p:outputLabel for="tel" value="Telefone:" />
 					<p:inputMask mask="(99)99999-9999" maxlength="15" id="tel"
-						value="#{beanPacienteCRUD.paciente.telefone}" />
+						value="#{beanPacienteCadastrar.paciente.telefone}" />
 
 					<p:outputLabel for="cpf" value="CPF:" />
 					<p:inputMask mask="999.999.999-99" size="15" id="cpf"
-						value="#{beanPacienteCRUD.paciente.cpf}" required="true"
+						value="#{beanPacienteCadastrar.paciente.cpf}" required="true"
 						requiredMessage="O campo cpf é um campo obrigatório" />
 
 					<p:outputLabel for="plano" value="Plano de Saúde" />
-					<p:inputText value="#{beanPacienteCRUD.paciente.planoDeSaude}"
+					<p:inputText value="#{beanPacienteCadastrar.paciente.planoDeSaude}"
 						required="true" id="plano"
 						requiredMessage="O campo 'plano de saúde' é um campo obrigatório"
 						size="30" maxlength="20"></p:inputText>
 
 					<p:outputLabel value="Idade:" for="idade" />
-					<p:inputText value="#{beanPacienteCRUD.paciente.idade}"
+					<p:inputText value="#{beanPacienteCadastrar.paciente.idade}"
 						required="true" id="idade"
 						requiredMessage="O campo 'idade' é um campo obrigatório" size="3"
 						maxlength="3"></p:inputText>
@@ -48,7 +48,7 @@
 
 				<h:panelGrid columns="2">
 					<p:commandButton styleClass="btn" value="Salvar"
-						actionListener="#{beanPacienteCRUD.salvar()}" />
+						actionListener="#{beanPacienteCadastrar.salvar()}" />
 					<a href="/SIGELAR/pages/paciente/pacienteCRUD.xhtml" class="btn"><i></i>Voltar</a>
 				</h:panelGrid>
 			</h:form>

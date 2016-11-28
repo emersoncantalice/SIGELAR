@@ -24,21 +24,21 @@
 						</p:outputPanel>
 					</f:facet>
 
-					<p:column headerText="Nome" sortBy="#{paciente.pessoa.nome}" filterBy="#{paciente.pessoa.nome}" toggleable="true"
+					<p:column headerText="Nome" sortBy="#{paciente.nome}" filterBy="#{paciente.nome}" toggleable="true"
 						filterStyle="display:none">
-						<h:outputText value="#{paciente.pessoa.nome}">
+						<h:outputText value="#{paciente.nome}">
 						</h:outputText>
 					</p:column>
 
 					<p:column headerText="Plano de saude"
-						sortBy="#{paciente.pessoa.nome}" filterBy="#{paciente.pessoa.nome}" toggleable="true"
+						sortBy="#{paciente.nome}" filterBy="#{paciente.nome}" toggleable="true"
 						filterStyle="display:none">
-						<h:outputText value="#{paciente.pessoa.planoDeSaude}" />
+						<h:outputText value="#{paciente.planoDeSaude}" />
 					</p:column>
 					
 					<p:column headerText="Idade"
-						sortBy="#{paciente.pessoa.idade}">
-						<h:outputText value="#{paciente.pessoa.idade}" />
+						sortBy="#{paciente.idade}">
+						<h:outputText value="#{paciente.idade}" />
 					</p:column>
 
 					<p:column headerText="Opções">

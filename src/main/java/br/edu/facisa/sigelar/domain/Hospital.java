@@ -1,12 +1,14 @@
 package br.edu.facisa.sigelar.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -16,7 +18,7 @@ public class Hospital implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "id_hospital", unique = true)
 	private Long id;
 
@@ -58,6 +60,9 @@ public class Hospital implements Serializable {
 
 	@Column(name = "site", length = 150, nullable = false)
 	private String site;
+	
+	@OneToMany(mappedBy = "hospital")
+	private List<Pessoa> pessoas;
 
 	public Hospital() {
 	}
