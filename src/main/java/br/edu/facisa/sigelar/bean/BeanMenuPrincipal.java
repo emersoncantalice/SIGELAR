@@ -36,6 +36,9 @@ public class BeanMenuPrincipal implements Serializable {
 				User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 				String name = user.getUsername();
 				usuario = usuarioDAO.buscarPorUsername(name);
+				if (usuario.getDataAcessoAtual() == null) {
+					usuario.setDataAcessoAtual(new Date());
+				}
 				usuario.setDataUltimoAcesso(usuario.getDataAcessoAtual());
 				usuario.setDataAcessoAtual(new Date());
 				SimpleDateFormat formata = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");

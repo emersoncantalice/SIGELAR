@@ -1,117 +1,153 @@
-<?xml version="1.0" encoding="UTF-8" ?>		
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">		
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"		
-	xmlns:h="http://xmlns.jcp.org/jsf/html"		
-	xmlns:p="http://primefaces.org/ui"		
-	xmlns:f="http://xmlns.jcp.org/jsf/core"		
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"		
-	template="/templates/Layout.xhtml">		
-		
-	<ui:define name="conteudo">		
-		<p:panel header="FUNCIONÁRIO">		
-			<h:form id="formMensagem">		
-				<p:messages id="mensagem" closable="true" />		
-			</h:form>		
-			<h:form id="formCadastro">		
-				<p:messages id="mensagemCadastro" />		
-				<h:panelGrid columns="2">		
-		
-					<p:outputLabel for="nome" value="Nome:" />		
-					<p:inputText value="#{beanFuncionarioCRUD.funcionario.name}"		
-						required="true" id="nome"		
-						requiredMessage="O campo 'nome' é um campo obrigatório" size="30"		
-						maxlength="20"></p:inputText>		
-		
-					<p:outputLabel for="tel" value="Telefone:" />		
-					<p:inputMask mask="(99)99999-9999" maxlength="15" id="tel"		
-						value="#{beanFuncionarioCRUD.funcionario.telefone}" />		
-		
-					<p:outputLabel for="cpf" value="CPF:" />		
-					<p:inputMask mask="999.999.999-99" size="15" id="cpf"		
-						value="#{beanFuncionarioCRUD.funcionario.cpf}" required="true"		
-						requiredMessage="O campo cpf é um campo obrigatório" />		
-		
-					<p:outputLabel for="cadastro" value="Admitido em:" />		
-					<p:calendar maxlength="8" id="cadastro" effect="fade"		
-						title="SELECIONE"		
-						value="#{beanFuncionarioCRUD.funcionario.dataAdmissao}"		
-						required="true"		
-						requiredMessage="O campo 'Admitido em' é um campo obrigatório"		
-						locale="pt_BR" />		
-		
-					<p:outputLabel value="Salario:" />		
-					<p:inputMask value="R$ " mask="99999,99" size="60" maxlength="8"		
-						required="true"		
-						requiredMessage="O campo 'nome' é um campo obrigatório" />		
-		
-					<p:outputLabel for="ct" value="Carteira de trabalho" />		
-					<p:inputText		
-						value="#{beanFuncionarioCRUD.funcionario.carteiraDeTrabalho}"		
-						required="true" id="ct"		
-						requiredMessage="O campo Carteira de trabalho é um campo obrigatório"		
-						size="30" maxlength="20"></p:inputText>		
-		
-					<p:outputLabel for="funcao" value="Função:" />		
-					<p:selectOneMenu id="funcao" maxlength="30" required="true"		
-						requiredMessage="O campo 'função' é um campo obrigatório"		
-						converter="omnifaces.SelectItemsConverter"		
-						value="#{beanFuncionarioCRUD.funcionario.pessoa}">		
-						<f:selectItem noSelectionOption="true" itemLabel="SELECIONE" />		
-						<f:selectItems value="#{beanPessoaCRUD.pessoas}" var="pessoa"		
-							itemValue="#{pessoa}" itemLabel="#{pessoa.nome}" />		
-					</p:selectOneMenu>		
-		
-					<p:outputLabel value="Criar usuário de Sistema?:" />		
-					<p:selectOneRadio		
-						value="#{beanParticipanteCRUD.participante.estudanteFacisa}"		
-						required="true"		
-						requiredMessage="O campo 'Estudante Facisa?' é um campo obrigatório">		
-						<f:selectItem itemValue="S" itemLabel="SIM" />		
-						<f:selectItem itemValue="N" itemLabel="NÃO" />		
-						<p:ajax listener="#{beanParticipanteCRUD.EalunoFacisa()}"		
-							update=":formCadastro:dadosUsuario" />		
-					</p:selectOneRadio>		
-				</h:panelGrid>		
-		
-				<h:panelGrid columns="2" id="dadosUsuario">		
-		
-					<p:outputLabel id="usuario" for="user" value="Usuário:"		
-						rendered="#{beanParticipanteCRUD.EalunoFacisa()}" />		
-					<p:inputText id="user" size="15" maxlength="10"		
-						rendered="#{beanParticipanteCRUD.EalunoFacisa()}"		
-						value="#{beanParticipanteCRUD.participante.matricula}"		
-						required="true"		
-						requiredMessage="O campo 'usuário' é um campo obrigatório" />		
-		
-					<p:outputLabel id="senha" for="senhaO" value="Senha:"		
-						rendered="#{beanParticipanteCRUD.EalunoFacisa()}" />		
-					<p:inputText id="senhaO" size="15" maxlength="10"		
-						rendered="#{beanParticipanteCRUD.EalunoFacisa()}"		
-						value="#{beanParticipanteCRUD.participante.matricula}"		
-						required="true"		
-						requiredMessage="O campo 'senha' é um campo obrigatório" />		
-		
-					<p:outputLabel for="email" value="Email:"		
-						rendered="#{beanParticipanteCRUD.EalunoFacisa()}" />		
-					<p:inputText rendered="#{beanParticipanteCRUD.EalunoFacisa()}"		
-						size="50" maxlength="50" id="email" disabled="true"		
-						value="#{beanParticipanteCRUD.participante.email}" required="true"		
-						requiredMessage="O campo 'Email' é um campo obrigatório"		
-						validatorMessage="O campo 'Email' não é valido">		
-						<f:validator validatorId="custom.emailValidator" />		
-					</p:inputText>		
-		
-				</h:panelGrid>		
-		
-				<h:panelGrid columns="2">		
-					<p:commandButton styleClass="btn" value="Salvar"		
-						actionListener="#{beanFuncionarioCRUD.salvar()}" />		
-					<a href="/SIGELAR/pages/funcionario/funcionarioCRUD.xhtml"		
-						class="btn"><i></i>Voltar</a>		
-				</h:panelGrid>		
-			</h:form>		
-		</p:panel>		
-		
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	template="/templates/Layout.xhtml">
+
+	<ui:define name="conteudo">
+		<p:panel header="FUNCIONÁRIO">
+			<h:form id="formMensagem">
+				<p:messages id="mensagem" closable="true" />
+			</h:form>
+			<h:form id="formCadastro">
+				<p:messages id="mensagemCadastro" />
+				<h:panelGrid columns="2">
+
+					<p:outputLabel for="nome" value="Nome:" />
+					<p:inputText value="#{beanFuncionarioCadastro.funcionario.nome}"
+						required="true" id="nome"
+						requiredMessage="O campo 'nome' é um campo obrigatório" size="30"
+						maxlength="20"></p:inputText>
+
+					<p:outputLabel for="tel" value="Telefone:" />
+					<p:inputMask mask="(99)99999-9999" maxlength="15" id="tel"
+						value="#{beanFuncionarioCadastro.funcionario.telefone}" />
+
+					<p:outputLabel for="cpf" value="CPF:" />
+					<p:inputMask mask="999.999.999-99" size="15" id="cpf"
+						value="#{beanFuncionarioCadastro.funcionario.cpf}" required="true"
+						requiredMessage="O campo cpf é um campo obrigatório" />
+
+					<p:outputLabel for="cadastro" value="Admitido em:" />
+					<p:calendar maxlength="8" id="cadastro" effect="fade"
+						title="SELECIONE"
+						value="#{beanFuncionarioCadastro.funcionario.admitidoEm}"
+						required="true"
+						requiredMessage="O campo 'Admitido em' é um campo obrigatório"
+						locale="pt_BR" />
+
+					<p:outputLabel value="Salario:" />
+					<p:inputMask value="#{beanFuncionarioCadastro.funcionario.salario}"
+						size="60" maxlength="8" required="true" 
+						requiredMessage="O campo 'nome' é um campo obrigatório" />
+
+					<p:outputLabel for="ct" value="Carteira de trabalho" />
+					<p:inputText
+						value="#{beanFuncionarioCadastro.funcionario.carteiraTrabalho}"
+						required="true" id="ct"
+						requiredMessage="O campo Carteira de trabalho é um campo obrigatório"
+						size="30" maxlength="20"></p:inputText>
+
+					<p:outputLabel for="funcao" value="Função:" />
+					<p:selectOneMenu id="funcao" maxlength="30" required="true"
+						requiredMessage="O campo 'função' é um campo obrigatório"
+						converter="omnifaces.SelectItemsConverter"
+						value="#{beanFuncionarioCadastro.funcao}">
+						<f:selectItem noSelectionOption="true" itemLabel="SELECIONE" />
+						<f:selectItems value="#{beanFuncionarioCadastro.funcoes}"
+							var="funcao" itemValue="#{funcao}" itemLabel="#{funcao}" />
+						<p:ajax listener="#{beanFuncionarioCadastro.ehMedico}"
+							update=":formCadastro:dadosMedico" />
+					</p:selectOneMenu>
+
+					<p:outputLabel value="Criar usuário de Sistema?:" />
+					<p:selectOneRadio value="#{beanFuncionarioCadastro.criaUserVar}"
+						required="true"
+						requiredMessage="O campo 'Estudante Facisa?' é um campo obrigatório">
+						<f:selectItem itemValue="S" itemLabel="SIM" />
+						<f:selectItem itemValue="N" itemLabel="NÃO" />
+						<p:ajax listener="#{beanFuncionarioCadastro.criaUser()}"
+							update=":formCadastro:dadosUsuario" />
+					</p:selectOneRadio>
+				</h:panelGrid>
+
+				<h:panelGrid columns="2" id="dadosMedico">
+
+					<p:outputLabel id="medico" for="med" value="CRM:"
+						rendered="#{beanFuncionarioCadastro.ehMedico()}" />
+					<p:inputText id="med" size="15" maxlength="10"
+						rendered="#{beanFuncionarioCadastro.ehMedico()}"
+						value="#{beanFuncionarioCadastro.medico.crm}" required="true"
+						requiredMessage="O campo 'CRM' é um campo obrigatório" />
+
+				</h:panelGrid>
+
+
+				<h:panelGrid columns="2" id="dadosUsuario">
+
+					<p:outputLabel id="user" for="user2" value="Username:"
+						rendered="#{beanFuncionarioCadastro.criaUser()}" />
+					<p:inputText id="user2" size="15" maxlength="10"
+						rendered="#{beanFuncionarioCadastro.criaUser()}"
+						value="#{beanFuncionarioCadastro.funcionario.usuario.username}"
+						required="true"
+						requiredMessage="O campo 'username' é um campo obrigatório" />
+
+					<p:outputLabel id="senha" for="senhaO" value="Senha:"
+						rendered="#{beanFuncionarioCadastro.criaUser()}" />
+					<p:inputText id="senhaO" size="15" maxlength="10"
+						rendered="#{beanFuncionarioCadastro.criaUser()}"
+						value="#{beanFuncionarioCadastro.funcionario.usuario.password}"
+						required="true"
+						requiredMessage="O campo 'senha' é um campo obrigatório" />
+
+					<p:outputLabel for="email" value="Email:"
+						rendered="#{beanFuncionarioCadastro.criaUser()}" />
+					<p:inputText rendered="#{beanFuncionarioCadastro.criaUser()}"
+						size="50" maxlength="50" id="email"
+						value="#{beanFuncionarioCadastro.funcionario.usuario.email}"
+						required="true"
+						requiredMessage="O campo 'Email' é um campo obrigatório"
+						validatorMessage="O campo 'Email' não é valido">
+						<f:validator validatorId="custom.emailValidator" />
+					</p:inputText>
+
+					<h:outputLabel for="menu" value="Regras de Acesso: "
+						rendered="#{beanFuncionarioCadastro.criaUser()}" />
+					<h:panelGroup rendered="#{beanFuncionarioCadastro.criaUser()}">
+						<p:selectCheckboxMenu id="menu"
+							value="#{beanFuncionarioCadastro.regrasSelecionadas}"
+							label="Selecione" filter="true" filterMatchMode="startsWith"
+							panelStyle="width:250px">
+							<f:selectItems value="#{beanFuncionarioCadastro.regrasAcesso}" />
+						</p:selectCheckboxMenu>
+
+						<p:commandButton update=":formCadastro:mensagemCadastro display"
+							value="Adicionar" />
+
+						<p:outputPanel id="display"
+							style="width:250px;padding-left:5px;margin-top:10px">
+							<p:dataList value="#{beanFuncionarioCadastro.regrasSelecionadas}"
+								var="regra" emptyMessage="Nenhuma regra foi selecionada">
+          							#{regra}
+       							 </p:dataList>
+						</p:outputPanel>
+					</h:panelGroup>
+
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+					<p:commandButton styleClass="btn" value="Salvar"
+						actionListener="#{beanFuncionarioCadastro.salvar()}" />
+					<a href="/SIGELAR/pages/funcionario/funcionarioCRUD.xhtml"
+						class="btn"><i></i>Voltar</a>
+				</h:panelGrid>
+			</h:form>
+		</p:panel>
+
 		<script type="text/javascript">		
 	    /**		
 	     * Faces Validator		
@@ -130,7 +166,7 @@
 	            }		
 	        }		
 	    };		
-		</script>		
-		
-	</ui:define>		
-</ui:composition> 
+		</script>
+
+	</ui:define>
+</ui:composition>

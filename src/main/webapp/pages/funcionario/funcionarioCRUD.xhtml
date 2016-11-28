@@ -25,21 +25,22 @@
 						</p:outputPanel>
 					</f:facet>
 
-					<p:column headerText="Nome" sortBy="#{funcionario.pessoa.nome}">
-						<h:outputText value="#{funcionario.pessoa.nome}">
+					<p:column headerText="Nome" sortBy="#{funcionario.nome}">
+						<h:outputText value="#{funcionario.nome}" filterBy="#{funcionario.nome}" toggleable="true"
+						filterStyle="display:none">
 						</h:outputText>
 					</p:column>
 
-					<p:column headerText="Data de Admissão"
-						sortBy="#{funcionario.pessoa.nome}">
-						<h:outputText value="#{funcionario.dataAdmissao}">
+					<p:column headerText="Data de Admissão" filterBy="#{funcionario.admitidoEm}" toggleable="true"
+						filterStyle="display:none">
+						<h:outputText value="#{funcionario.admitidoEm}">
 							<f:convertDateTime locale="pt_BR" />
 						</h:outputText>
 					</p:column>
-
-					<p:column headerText="Nº Carteira Trabalho"
-						sortBy="#{funcionario.pessoa.nome}">
-						<h:outputText value="#{funcionario.carteiraDeTrabalho}" />
+					
+					<p:column headerText="Função" filterBy="#{funcionario.funcao}" toggleable="true"
+						filterStyle="display:none">
+						<h:outputText value="#{funcionario.funcao}" />
 					</p:column>
 
 					<p:column headerText="Opções">

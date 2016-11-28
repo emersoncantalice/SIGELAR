@@ -2,17 +2,13 @@ package br.edu.facisa.sigelar.domain;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -27,17 +23,16 @@ public abstract class Pessoa implements Serializable {
 	@Column(name = "id_pessoa")
 	private Long id;
 
-	@OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER, orphanRemoval = true)
-	@PrimaryKeyJoinColumn
-	private Hospital hospital;
+	@Column(name = "id_hospital")
+	private Long idHospital;
 
 	@Column(name = "nome", length = 100, nullable = false)
 	private String nome;
 
-	@Column(name = "cpf", length = 11, nullable = false)
+	@Column(name = "cpf", length = 20, nullable = false)
 	private String cpf;
 
-	@Column(name = "telefone", length = 11)
+	@Column(name = "telefone", length = 20)
 	private String telefone;
 
 	public String getTelefone() {
@@ -64,12 +59,20 @@ public abstract class Pessoa implements Serializable {
 		this.cpf = cpf;
 	}
 
-	public Hospital getHospital() {
-		return hospital;
+	public Long getId() {
+		return id;
 	}
 
-	public void setHospital(Hospital hospital) {
-		this.hospital = hospital;
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Long getIdHospital() {
+		return idHospital;
+	}
+
+	public void setIdHospital(Long idHospital) {
+		this.idHospital = idHospital;
 	}
 
 }

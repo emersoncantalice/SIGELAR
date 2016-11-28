@@ -20,23 +20,24 @@
 						required="true" id="nome"
 						requiredMessage="O campo 'nome' é um campo obrigatório" size="30"
 						maxlength="30"></p:inputText>
-						
-				<p:outputLabel for="cod" value="Código:" />
+
+					<p:outputLabel for="cod" value="Código:" />
 					<p:inputText value="#{beanProdutoCadastro.produto.codigoProduto}"
 						required="true" id="cod"
-						requiredMessage="O campo 'codigo' é um campo obrigatório" size="30"
-						maxlength="20"></p:inputText>
-						
-				<p:outputLabel for="quant" value="Quantidade:" />
-					<p:inputMask mask="9999" value="#{beanProdutoCadastro.produto.quantidade}"
+						requiredMessage="O campo 'codigo' é um campo obrigatório"
+						size="30" maxlength="20"></p:inputText>
+
+					<p:outputLabel for="quant" value="Quantidade:" />
+					<p:inputText value="#{beanProdutoCadastro.produto.quantidade}"
 						required="true" id="quant"
-						requiredMessage="O campo 'quantidade' é um campo obrigatório" size="30"
-						maxlength="20"></p:inputMask>
+						requiredMessage="O campo 'quantidade' é um campo obrigatório"
+						size="30" maxlength="20" />
 
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">
-					<p:commandButton styleClass="btn" value="Salvar" update="formMensagem:mensagem, formCadastro"
+					<p:commandButton styleClass="btn" value="Salvar"
+						update="formMensagem:mensagem, formCadastro"
 						actionListener="#{beanProdutoCadastro.salvar()}" />
 					<a href="/SIGELAR/pages/produto/produtoCRUD.xhtml" class="btn"><i></i>Voltar</a>
 				</h:panelGrid>

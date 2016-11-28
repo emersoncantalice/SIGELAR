@@ -21,7 +21,6 @@ public class BeanProdutoCRUD implements Serializable {
 
 	private static final long serialVersionUID = 4952476482356094470L;
 	private List<Produto> produtos;
-//	private List<Produto> produtosFiltrados;
 
 	@PostConstruct
 	public void init() {
@@ -55,14 +54,6 @@ public class BeanProdutoCRUD implements Serializable {
 			Messages.addGlobalInfo("Erro ao tentar excluir o produto");
 		}
 	}
-
-//	public List<Produto> getProdutosFiltrados() {
-//		return produtosFiltrados;
-//	}
-//
-//	public void setProdutosFiltrados(List<Produto> produtosFiltrados) {
-//		this.produtosFiltrados = produtosFiltrados;
-//	}
 
 	public List<Produto> getProdutos() {
 		return produtos;

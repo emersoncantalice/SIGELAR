@@ -10,7 +10,7 @@ import javax.faces.bean.SessionScoped;
 public class BeanBoxNavigation implements Serializable {
 
 	private static final String VAZIO = "";
-	public static final BeanBoxNavigation INSTANCE = new BeanBoxNavigation();
+	private static final BeanBoxNavigation INSTANCE = new BeanBoxNavigation();
 	private static final long serialVersionUID = 5096136652371175046L;
 	private String id;
 
