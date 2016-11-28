@@ -16,40 +16,47 @@
 
 				<p:messages id="mensagemCadastro" />
 				<h:panelGrid columns="2">
+				
+					<p:outputLabel for="pac" value="Paciente:" />
+					<p:selectOneMenu id="pac" maxlength="30"
+						converter="omnifaces.SelectItemsConverter"
+						value="#{beanMarcarConsulta.paciente}">
+						<f:selectItem noSelectionOption="true" itemLabel="SELECIONE" />
+						<f:selectItems value="#{beanMarcarConsulta.pacientes}"
+							var="paciente" itemValue="#{paciente}" itemLabel="#{paciente}" />
+					</p:selectOneMenu>
 
 					<p:outputLabel for="sala" value="Sala" />
-					<p:inputText value="#{beanMarcarConsultaCRUD.consulta.name}"
+					<p:inputText value="#{beanMarcarConsulta.consulta.sala}"
 						id="sala" size="30" maxlength="20"></p:inputText>
 
 					<p:outputLabel for="local" value="Local:" />
-					<p:inputText value="#{beanMarcarConsultaCRUD.consulta.local}"
+					<p:inputText value="#{beanMarcarConsulta.consulta.local}"
 						id="local" size="30" maxlength="20"></p:inputText>
 
 					<p:outputLabel value="Data e hora" for="hora" />
 					<p:calendar id="hora" required="true"
-						value="#{beanMarcarConsultaBean.data}" pattern="dd/MM/yyyy"
+						value="#{beanMarcarConsultaBean.data}" pattern="dd/MM/yyyy hh:mm"
 						readonlyInput="true" navigator="false" pages="1" mode="popup"
 						maxdate="#{beanMarcarConsultaBean.dataHoje}" locale="pt" />
 
 					<p:outputLabel for="medico" value="Médico" />
 					<p:selectOneMenu id="medico" maxlength="30"
 						converter="omnifaces.SelectItemsConverter"
-						value="#{beanMarcarConsultaCRUD.medico}">
+						value="#{beanMarcarConsulta.medico}">
 						<f:selectItem noSelectionOption="true" itemLabel="SELECIONE" />
-						<f:selectItems value="#{beanConsultaCRUD.consultas}" var="medico"
+						<f:selectItems value="#{beanMarcarConsulta.medicos}" var="medico"
 							itemValue="#{medico}" itemLabel="#{medico.nome}" />
-						<p:ajax listener="#{beanMarcarConsultaCRUD.popularConsultasDoMedico()}"
-							update=":formCadastro" />
 					</p:selectOneMenu>
 
 					<p:outputLabel for="queixa" value="Queixa:" />
-					<p:inputText value="#{beanMarcarConsultaCRUD.consulta.queixa}"
+					<p:inputText value="#{beanMarcarConsulta.consulta.queixa}"
 						id="queixa" size="30" maxlength="20"></p:inputText>
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">
 					<p:commandButton styleClass="btn" value="AGENDAR"
-						actionListener="#{beanMarcarConsultaCRUD.salvar()}" />
+						actionListener="#{beanMarcarConsulta.salvar()}" />
 				</h:panelGrid>
 			</h:form>
 		</p:panel>

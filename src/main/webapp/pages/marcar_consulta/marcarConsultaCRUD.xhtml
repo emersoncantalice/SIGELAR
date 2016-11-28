@@ -8,15 +8,14 @@
 	template="/templates/Layout.xhtml">
 
 	<ui:define name="conteudo">
-		<p:panel header="FUNCIONÁRIOS">
+		<p:panel header="MARCAR CONSULTA">
 			<h:form id="formMensagem">
 				<p:messages id="mensagem" closable="true" />
 			</h:form>
 			<h:form id="formListagem">
 				<p:dataTable id="tableListagem" paginator="true"
-					widgetVar="tableListagem"
-					value="#{beanFuncionarioCRUD.funcionarios}" var="funcionario"
-					emptyMessage="Nenhum registro encontrado." rows="8">
+					widgetVar="tableListagem" value="#{beanMarcarConsultaCRUD.consultas}"
+					var="consulta" emptyMessage="Nenhum registro encontrado." rows="8">
 					<f:facet name="header">
 						<p:outputPanel>
 							<p:outputLabel for="globalFilter" value="Pesquisar: " />
@@ -25,50 +24,45 @@
 						</p:outputPanel>
 					</f:facet>
 
-					<p:column headerText="Nome" sortBy="#{funcionario.nome}"
-						filterBy="#{funcionario.nome}" toggleable="true"
+					<p:column headerText="Queixa" sortBy="#{consulta.queixa}"
+						filterBy="#{consulta.queixa}" toggleable="true"
 						filterStyle="display:none">
-						<h:outputText value="#{funcionario.nome}"></h:outputText>
-					</p:column>
-
-					<p:column headerText="Data de Admissão"
-						filterBy="#{funcionario.admitidoEm}" toggleable="true"
-						filterStyle="display:none">
-						<h:outputText value="#{funcionario.admitidoEm}">
-							<f:convertDateTime locale="pt_BR" />
+						<h:outputText value="#{consulta.queixa}">
 						</h:outputText>
 					</p:column>
 
-					<p:column headerText="Função" filterBy="#{funcionario.funcao}"
-						toggleable="true" filterStyle="display:none">
-						<h:outputText value="#{funcionario.funcao}" />
+					<p:column headerText="Paciente" sortBy="#{consulta.paciente.nome}"
+						filterBy="#{consulta.paciente.nome}" filterStyle="display:none">
+						<h:outputText value="#{consulta.paciente.nome}" />
+					</p:column>
+
+					<p:column headerText="Data" sortBy="#{consulta.dataConsulta}"
+						filterBy="#{consulta.dataConsulta}" filterStyle="display:none">
+						<h:outputText value="#{consulta.dataConsulta}" />
 					</p:column>
 
 					<p:column headerText="Opções">
 						<p:panelGrid columns="4">
 							<p:commandLink value="Alterar"
-								actionListener="#{beanFuncionarioCRUD.editar}">
-								<f:attribute name="selecionadoCorrente" value="#{funcionario}" />
+								actionListener="#{beanMarcarConsultaCRUD.editar}">
+								<f:attribute name="selecionadoCorrente" value="#{consulta}" />
 							</p:commandLink>
 
 							<p:commandLink value="Excluir"
-								actionListener="#{beanFuncionarioCRUD.excluir}"
-								update=":formMensagem:mensagem, :formListagem:tableListagem">
+								actionListener="#{beanMarcarConsultaCRUD.excluir}"
+								update=":formListagem:tableListagem">
 
 								<p:confirm header="Confirmação"
-									message="Deseja realmente excluir esta pessoa #{funcionario.nome}?"
+									message="Deseja realmente excluir o consulta #{consulta.queixa}?"
 									icon="ui-icon-alert" />
-								<f:attribute name="selecionadoCorrente" value="#{funcionario}" />
+								<f:attribute name="selecionadoCorrente" value="#{consulta}" />
 							</p:commandLink>
-
-							<p:commandLink value="Visualizar" disabled="true" />
 
 						</p:panelGrid>
 
 					</p:column>
 					<f:facet name="footer">
-						<a href="/SIGELAR/pages/funcionario/funcionarioCadastro.xhtml"
-							class="btn"><i></i>CRIAR</a>
+						<a href="/SIGELAR/pages/consulta/consultaCadastro.xhtml" class="btn"><i></i>CRIAR</a>
 					</f:facet>
 				</p:dataTable>
 			</h:form>
@@ -83,5 +77,4 @@
 		</h:form>
 
 	</ui:define>
-
 </ui:composition>

@@ -26,4 +26,5 @@ public class MedicoDAO extends GenericDAO<Medico> {
 		}
 	}
 
+
 }
